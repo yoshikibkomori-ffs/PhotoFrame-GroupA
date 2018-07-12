@@ -11,7 +11,7 @@ namespace PhotoFrame.Persistence
     /// <summary>
     /// <see cref="IPhotoFileService">の実装クラス
     /// </summary>
-    class PhotoFileService : IPhotoFileService
+    public class PhotoFileService : IPhotoFileService
     {
         public IEnumerable<Domain.Model.File> FindAllPhotoFilesFromDirectory(string directory)
         {

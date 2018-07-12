@@ -7,79 +7,12 @@ using System.Threading.Tasks;
 
 namespace PhotoFrame.Persistence.EF
 {
-    /// <summary>
-    /// <see cref="IPhotoRepository">の実装クラス
-    /// </summary>
-    class PhotoRepository : IPhotoRepository
+    //PhotoRepository(DB)
+    class PhotoRepository
     {
-        public bool Exists(Photo entity)
+        //コンストラクタ
+        public PhotoRepository()
         {
-            return ExistsBy(entity.Id);
-        }
-
-        public bool ExistsBy(string id)
-        {
-            Boolean flag = false;
-            using (var context = new Album_PhotoDBEntities())
-            {
-                foreach (var m_Photo in context.M_Photo)
-                {
-                    if (m_Photo.Id == id)
-                    {
-                        flag = true;
-                        break;
-                    }
-                }
-            }
-            return flag;
-        }
-
-        public IEnumerable<Photo> Find(Func<IQueryable<Photo>, IQueryable<Photo>> query)
-        {
-            // TODO: DBプログラミング講座で実装
-            List<Photo> photos = new List<Photo>();
-            using (var context = new Album_PhotoDBEntities())
-            {
-                foreach (var m_Photo in context.M_Photo)
-                {
-                    photos.Add(ConvertM_PhotoToPhoto(m_Photo));
-                }
-                return query(photos.AsQueryable());
-            };
-        }
-
-        public Photo Find(Func<IQueryable<Photo>, Photo> query)
-        {
-            // TODO: DBプログラミング講座で実装
-            List<Photo> photos = new List<Photo>();
-            using (var context = new Album_PhotoDBEntities())
-            {
-                foreach (var m_Photo in context.M_Photo)
-                {
-                    photos.Add(ConvertM_PhotoToPhoto(m_Photo));
-                }
-                return query(photos.AsQueryable());
-            };
-        }
-
-        public Photo FindBy(string id)
-        {
-            // TODO: DBプログラミング講座で実装
-            //throw new NotImplementedException();
-            Photo photo = null;
-            using (var context = new Album_PhotoDBEntities())
-            {
-                var query = from Photo in context.M_Photo
-                            where Photo.Id == id
-                            select Photo;
-
-                foreach (var m_Photo in query)
-                {
-                    photo = ConvertM_PhotoToPhoto(m_Photo);
-                }
-                return photo;
-            }
-
         }
 
         public Photo Store(Photo entity)
@@ -97,9 +30,9 @@ namespace PhotoFrame.Persistence.EF
             //}
             using (var context = new Album_PhotoDBEntities())
             {
-                var query = from Photo in context.M_Photo
-                            where Photo.Id == entity.Id
-                            select Photo;
+                IQueryable query = from Photo in context.M_Photo
+                                   where Photo.Id == entity.Id
+                                   select Photo;
                 foreach (var m_Photo in query)
                 {
                     context.M_Photo.Remove(m_Photo);
@@ -111,13 +44,22 @@ namespace PhotoFrame.Persistence.EF
 
         }
 
-        public void StoreIfNotExists(IEnumerable<Photo> photos)
+        public IEnumerable<Photo> Find(Func<IQueryable<Photo>, IQueryable<Photo>> query)
         {
             // TODO: DBプログラミング講座で実装
-            throw new NotImplementedException();
+            List<Photo> photos = new List<Photo>();
+            using (var context = new Album_PhotoDBEntities())
+            {
+                foreach (var m_Photo in context.M_Photo)
+                {
+                    photos.Add(ConvertM_PhotoToPhoto(m_Photo));
+                }
+                return query(photos.AsQueryable());
+            };
         }
 
-        private static M_Photo ConvertPhotoToM_Photo(Photo photo)
+        private static M_Photo Convert_Photo_to_MPhoto(Photo photo)
+
         {
             M_Photo m_Photo = new M_Photo();
             m_Photo.Id = photo.Id;
@@ -127,17 +69,9 @@ namespace PhotoFrame.Persistence.EF
             return m_Photo;
         }
 
-        private static Photo ConvertM_PhotoToPhoto(M_Photo m_Photo)
+        private static Photo Convert_MPhoto_to_Photo(M_Photo m_Photo)
         {
             return new Photo(m_Photo.Id, new Domain.Model.File(m_Photo.FilePath), Convert.ToBoolean(m_Photo.IsFavorite), m_Photo.AlbumId);
         }
-        //private static Photo Duplication(DbSet<>)
-        //{
-        //    foreach(var photo in m_Photo)
-        //    {
-        //
-        //    }
-        //    return null;
-        //}
     }
 }

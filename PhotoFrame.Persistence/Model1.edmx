@@ -136,6 +136,12 @@
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
-    <Diagrams></Diagrams>
+    <Diagrams>
+      <Diagram DiagramId="cae23226d27d4595ba6676020dde1e17" Name="Diagram1">
+        <EntityTypeShape EntityType="Album_PhotoDBModel.M_Album" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Album_PhotoDBModel.M_Photo" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <AssociationConnector Association="Album_PhotoDBModel.Restriction_Id" ManuallyRouted="false" />
+      </Diagram>
+    </Diagrams>
   </Designer>
 </edmx:Edmx>

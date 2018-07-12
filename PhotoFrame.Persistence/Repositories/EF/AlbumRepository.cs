@@ -10,7 +10,7 @@ namespace PhotoFrame.Persistence.EF
     /// <summary>
     /// <see cref="IAlbumRepository">の実装クラス
     /// </summary>
-    class AlbumRepository : IAlbumRepository
+    public class AlbumRepository
     {
         //◆追加
         System.Data.Entity.SqlServer.SqlProviderServices instance = System.Data.Entity.SqlServer.SqlProviderServices.Instance;
