@@ -7,44 +7,44 @@ using PhotoFrame.Domain.Model;
 
 namespace PhotoFrame.Domain.UseCase
 {
-    public class ChangeAlbum
+    public class ChangeKeyword
     {
         private readonly IAlbumRepository albumRepository;
         private readonly IPhotoRepository photoRepository;
 
-        public ChangeAlbum(IAlbumRepository albumRepository, IPhotoRepository photoRepository)
+        public ChangeKeyword(IAlbumRepository albumRepository, IPhotoRepository photoRepository)
         {
             this.albumRepository = albumRepository;
             this.photoRepository = photoRepository;
         }
 
         /// <summary>
-        /// 引数のフォトの所属アルバムを変更する
+        /// 引数のフォトのキーワードを変更する
         /// ※参照渡しなので返り値を保存しなくても書き換わる
         /// </summary>
         /// <param name="photo"></param>
-        /// <param name="newAlbumName"></param>
+        /// <param name="keytext"></param>
         /// <returns></returns>
-        public Photo Execute(Photo photo, string newAlbumName)
+        public Photo Execute(Photo photo, string keytext)
         {
-            Func<IQueryable<Album>, Album> query = allAlbums =>
+            Func<IQueryable<Keyword>, Keyword> query = allKeywords =>
             {
-                foreach (Album album in allAlbums)
+                foreach (Keyword keyword in allKeywords)
                 {
-                    if (album.Name == newAlbumName)
+                    if (keyword.KeyText == keytext)
                     {
-                        return album;
+                        return keyword;
                     }
                 }
 
                 return null;
             };
 
-            Album newAlbum = albumRepository.Find(query);
+            Keyword newKeyword = albumRepository.Find(query);
 
-            if(newAlbum != null)
+            if(newKeyword != null)
             {
-                photo.IsAssignedTo(newAlbum);
+                photo.IsAssignedTo(newKeyword);
             }
 
             photoRepository.Store(photo);
@@ -53,33 +53,33 @@ namespace PhotoFrame.Domain.UseCase
         }
 
         /// <summary>
-        /// 引数のフォトの所属アルバムを変更する
+        /// 引数のフォトのキーワードを変更する
         /// ※参照渡しなので返り値を保存しなくても書き換わる
         /// （非同期型）
         /// </summary>
         /// <param name="photo"></param>
-        /// <param name="newAlbumName"></param>
+        /// <param name="keytext"></param>
         /// <returns></returns>
-        public async Task<Photo> ExecuteAsync(Photo photo, string newAlbumName)
+        public async Task<Photo> ExecuteAsync(Photo photo, string keytext)
         {
-            Func<IQueryable<Album>, Album> query = allAlbums =>
+            Func<IQueryable<Keyword>, Keyword> query = allKeywords =>
             {
-                foreach (Album album in allAlbums)
+                foreach (Keyword keyword in allKeywords)
                 {
-                    if (album.Name == newAlbumName)
+                    if (keyword.KeyText == keytext)
                     {
-                        return album;
+                        return keyword;
                     }
                 }
 
                 return null;
             };
 
-            Album newAlbum = albumRepository.Find(query);
+            Keyword newKeyword = albumRepository.Find(query);
 
-            if (newAlbum != null)
+            if (newKeyword != null)
             {
-                photo.IsAssignedTo(newAlbum);
+                photo.IsAssignedTo(newKeyword);
             }
 
             await Task.Run(() =>

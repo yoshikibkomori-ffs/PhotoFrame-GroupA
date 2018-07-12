@@ -7,12 +7,12 @@ using PhotoFrame.Domain.Model;
 
 namespace PhotoFrame.Domain.UseCase
 {
-    public class SearchDirectory
+    public class CreatePhotoList
     {
         private readonly IPhotoRepository photoRepository;
         private readonly IPhotoFileService photoFileService;
 
-        public SearchDirectory(IPhotoRepository photoRepository, IPhotoFileService photoFileService)
+        public CreatePhotoList(IPhotoRepository photoRepository, IPhotoFileService photoFileService)
         {
             this.photoRepository = photoRepository;
             this.photoFileService = photoFileService;
@@ -21,11 +21,11 @@ namespace PhotoFrame.Domain.UseCase
         /// <summary>
         /// 指定したディレクトリ直下のフォトのリストを返す
         /// </summary>
-        /// <param name="directoryName"></param>
+        /// <param name="dirpath"></param>
         /// <returns></returns>
-        public IEnumerable<Photo> Execute(string directoryName)
+        public List<Photo> Execute(string dirpath)
         {
-            IEnumerable<Domain.Model.File> files = photoFileService.FindAllPhotoFilesFromDirectory(directoryName);
+            IEnumerable<Domain.Model.File> files = photoFileService.FindAllPhotoFilesFromDirectory(dirpath);
             List<Photo> photosInDirectory = new List<Photo>();
 
             foreach(File file in files)

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 
 namespace PhotoFrame.Domain.Model
 {
-    public class Photo : IEntity
+    public class Photo/* : IEntity*/
     {
         public string Id { get; private set; }
 
@@ -23,20 +24,20 @@ namespace PhotoFrame.Domain.Model
         /// <summary>
         /// 所属アルバム
         /// </summary>
-        public virtual Album Album { get; private set; }
+        public virtual Keyword Keyword { get; private set; }
 
         /// <summary>
         /// 所属アルバムID
         /// </summary>
-        public string AlbumId { get; set; }
+        public string KeywordId { get; set; }
 
-        public Photo(string photoId, File file, bool isFavorite = false, string albumId = null, Album album = null)
+        public Photo(string photoId, File file, bool isFavorite = false, string keywordId = null, Keyword keyword = null)
         {
             Id = photoId;
             File = file;
             IsFavorite = isFavorite;
-            AlbumId = albumId;
-            Album = album;
+            KeywordId = keywordId;
+            Keyword = keyword;
         }
 
         public static Photo CreateFromFile(File file)
@@ -50,21 +51,32 @@ namespace PhotoFrame.Domain.Model
 
         private Photo() { }
         
-        public void IsAssignedTo(Album album)
+        public void IsAssignedTo(Keyword keyword)
         {
-            Album = album;
-            AlbumId = album.Id;
+            Keyword = keyword;
+            KeywordId = keyword.Id;
         }
 
-        public void MarkAsFavorite()
+        public void ToggleFavorite()
         {
-            IsFavorite = true;
+            if(IsFavorite == true)
+            {
+                IsFavorite = false;
+            }
+            else {
+                IsFavorite = true;
+            }
         }
 
-        public void MarkAsUnFavorite()
-        {
-            IsFavorite = false;
-        }
+        //public void MarkAsFavorite()
+        //{
+        //    IsFavorite = true;
+        //}
+
+        //public void MarkAsUnFavorite()
+        //{
+        //    IsFavorite = false;
+        //}
 
         public override bool Equals(object obj)
         {
