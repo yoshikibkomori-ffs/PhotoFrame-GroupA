@@ -22,118 +22,149 @@
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
+        // <summary>
+        // Required method for Designer support - do not modify
+        // the contents of this method with the code editor.
+        // </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBox_SelectedPhotos = new System.Windows.Forms.PictureBox();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.button_Back = new System.Windows.Forms.Button();
-            this.button_Next = new System.Windows.Forms.Button();
-            this.checkBox_AutoPlay = new System.Windows.Forms.CheckBox();
-            this.timer_ChangePhoto = new System.Windows.Forms.Timer(this.components);
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_SelectedPhotos)).BeginInit();
-            this.panel2.SuspendLayout();
+            this.PictureBox1 = new System.Windows.Forms.PictureBox();
+            this.NextBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NextBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             this.SuspendLayout();
             // 
-            // panel1
+            // PictureBox1
             // 
-            this.panel1.Controls.Add(this.panel2);
-            this.panel1.Controls.Add(this.pictureBox_SelectedPhotos);
-            this.panel1.Location = new System.Drawing.Point(102, 12);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(651, 446);
-            this.panel1.TabIndex = 4;
+            this.PictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
+            this.PictureBox1.Location = new System.Drawing.Point(44, 38);
+            this.PictureBox1.Name = "PictureBox1";
+            this.PictureBox1.Size = new System.Drawing.Size(900, 600);
+            this.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.PictureBox1.TabIndex = 0;
+            this.PictureBox1.TabStop = false;
+            this.PictureBox1.Click += new System.EventHandler(this.PictureBox1_Click);
             // 
-            // pictureBox_SelectedPhotos
+            // NextBox2
             // 
-            this.pictureBox_SelectedPhotos.Location = new System.Drawing.Point(59, 13);
-            this.pictureBox_SelectedPhotos.Name = "pictureBox_SelectedPhotos";
-            this.pictureBox_SelectedPhotos.Size = new System.Drawing.Size(523, 337);
-            this.pictureBox_SelectedPhotos.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox_SelectedPhotos.TabIndex = 1;
-            this.pictureBox_SelectedPhotos.TabStop = false;
+            this.NextBox2.Location = new System.Drawing.Point(12, 269);
+            this.NextBox2.Name = "NextBox2";
+            this.NextBox2.Size = new System.Drawing.Size(26, 97);
+            this.NextBox2.TabIndex = 1;
+            this.NextBox2.TabStop = false;
             // 
-            // panel2
+            // pictureBox3
             // 
-            this.panel2.Controls.Add(this.checkBox_AutoPlay);
-            this.panel2.Controls.Add(this.button_Next);
-            this.panel2.Controls.Add(this.button_Back);
-            this.panel2.Location = new System.Drawing.Point(183, 372);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(284, 54);
-            this.panel2.TabIndex = 7;
+            this.pictureBox3.Location = new System.Drawing.Point(950, 269);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(26, 97);
+            this.pictureBox3.TabIndex = 2;
+            this.pictureBox3.TabStop = false;
             // 
-            // button_Back
+            // pictureBox4
             // 
-            this.button_Back.Font = new System.Drawing.Font("HGP創英角ｺﾞｼｯｸUB", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_Back.Location = new System.Drawing.Point(160, 3);
-            this.button_Back.Name = "button_Back";
-            this.button_Back.Size = new System.Drawing.Size(50, 45);
-            this.button_Back.TabIndex = 7;
-            this.button_Back.Text = "◀";
-            this.button_Back.UseVisualStyleBackColor = true;
-            this.button_Back.Click += new System.EventHandler(this.button_Back_Click);
+            this.pictureBox4.Location = new System.Drawing.Point(317, 671);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(105, 46);
+            this.pictureBox4.TabIndex = 3;
+            this.pictureBox4.TabStop = false;
             // 
-            // button_Next
+            // pictureBox5
             // 
-            this.button_Next.Font = new System.Drawing.Font("HGP創英角ｺﾞｼｯｸUB", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_Next.Location = new System.Drawing.Point(231, 3);
-            this.button_Next.Name = "button_Next";
-            this.button_Next.Size = new System.Drawing.Size(50, 45);
-            this.button_Next.TabIndex = 8;
-            this.button_Next.Text = "▶";
-            this.button_Next.UseVisualStyleBackColor = true;
-            this.button_Next.Click += new System.EventHandler(this.button_Next_Click);
+            this.pictureBox5.Location = new System.Drawing.Point(445, 671);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(105, 46);
+            this.pictureBox5.TabIndex = 4;
+            this.pictureBox5.TabStop = false;
             // 
-            // checkBox_AutoPlay
+            // pictureBox6
             // 
-            this.checkBox_AutoPlay.AutoSize = true;
-            this.checkBox_AutoPlay.Checked = true;
-            this.checkBox_AutoPlay.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox_AutoPlay.Font = new System.Drawing.Font("MS UI Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.checkBox_AutoPlay.Location = new System.Drawing.Point(22, 15);
-            this.checkBox_AutoPlay.Name = "checkBox_AutoPlay";
-            this.checkBox_AutoPlay.Size = new System.Drawing.Size(104, 23);
-            this.checkBox_AutoPlay.TabIndex = 9;
-            this.checkBox_AutoPlay.Text = "自動再生";
-            this.checkBox_AutoPlay.UseVisualStyleBackColor = true;
-            this.checkBox_AutoPlay.CheckedChanged += new System.EventHandler(this.checkBox_AutoPlay_CheckedChanged);
-            // 
-            // timer_ChangePhoto
-            // 
-            this.timer_ChangePhoto.Tick += new System.EventHandler(this.timer_ChangePhoto_Tick);
+            this.pictureBox6.Location = new System.Drawing.Point(567, 671);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(105, 46);
+            this.pictureBox6.TabIndex = 5;
+            this.pictureBox6.TabStop = false;
             // 
             // SlideShow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.panel1);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(984, 762);
+            this.Controls.Add(this.pictureBox6);
+            this.Controls.Add(this.pictureBox5);
+            this.Controls.Add(this.pictureBox4);
+            this.Controls.Add(this.pictureBox3);
+            this.Controls.Add(this.NextBox2);
+            this.Controls.Add(this.PictureBox1);
             this.Name = "SlideShow";
             this.Text = "SlideShow";
             this.Load += new System.EventHandler(this.SlideShow_Load);
-            this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_SelectedPhotos)).EndInit();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NextBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.CheckBox checkBox_AutoPlay;
-        private System.Windows.Forms.Button button_Next;
-        private System.Windows.Forms.Button button_Back;
-        private System.Windows.Forms.PictureBox pictureBox_SelectedPhotos;
-        private System.Windows.Forms.Timer timer_ChangePhoto;
+        private System.Windows.Forms.PictureBox PictureBox1;
+        private System.Windows.Forms.PictureBox NextBox2;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.PictureBox pictureBox6;
     }
 }
+
+
+
+//private void InitializeComponent()
+//{
+//    this.components = new System.ComponentModel.Container();
+//    this.timer_ChangePhoto = new System.Windows.Forms.Timer(this.components);
+//    this.PictureBox1 = new System.Windows.Forms.PictureBox();
+//    ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).BeginInit();
+//    this.SuspendLayout();
+//    // 
+//    // timer_ChangePhoto
+//    // 
+//    this.timer_ChangePhoto.Tick += new System.EventHandler(this.timer_ChangePhoto_Tick);
+//    // 
+//    // PictureBox1
+//    // 
+//    this.PictureBox1.Location = new System.Drawing.Point(44, 38);
+//    this.PictureBox1.Name = "PictureBox1";
+//    this.PictureBox1.Size = new System.Drawing.Size(900, 600);
+//    this.PictureBox1.TabIndex = 0;
+//    this.PictureBox1.TabStop = false;
+//    this.PictureBox1.Click += new System.EventHandler(this.PictureBox1_Click);
+//    // 
+//    // SlideShow
+//    // 
+//    this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+//    this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+//    this.ClientSize = new System.Drawing.Size(984, 762);
+//    this.Controls.Add(this.PictureBox1);
+//    this.Name = "SlideShow";
+//    this.Text = "SlideShow";
+//    this.Load += new System.EventHandler(this.SlideShow_Load);
+//    ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).EndInit();
+//    this.ResumeLayout(false);
+
+//}
+
+//#endregion
+//private System.Windows.Forms.Timer timer_ChangePhoto;
+//private System.Windows.Forms.PictureBox PictureBox1;
