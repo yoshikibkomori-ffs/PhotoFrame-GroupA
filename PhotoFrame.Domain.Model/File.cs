@@ -25,9 +25,10 @@ namespace PhotoFrame.Domain.Model
         /// </summary>
         public bool IsPhoto { get; }
 
-
-
-
+        /// <summary>
+        /// 撮影日時
+        /// </summary>
+        public DateTime Date { get; private set; }
 
         public File(string filePath)
         {
@@ -35,11 +36,12 @@ namespace PhotoFrame.Domain.Model
             IsPhoto = HasPhotoFileExtension(filePath);
         }
 
-
-
-
-
         private File() { }
+
+        public void addDateTime(DateTime date)
+        {
+            this.Date = date;
+        }
 
         private bool HasPhotoFileExtension(string filePath)
         {

@@ -14,52 +14,92 @@ namespace PhotoFrame.Application
     // TODO: 仮実装
     public class PhotoFrameApplication
     {
-        private readonly CreateAlbum createAlbum;
-        private readonly SearchAlbum searchAlbum;
-        private readonly SearchDirectory searchDirectory;
-        private readonly ToggleFavorite toggleFavorite;
-        private readonly ChangeAlbum changeAlbum;
+        private readonly CreatePhotoList createPhotoList;　//変更済み
+        private readonly AddKeyword addKeyword; //変更済み
+        private readonly ChangeKeyword changeKeyword; //変更済み
+        private readonly ChangeFavorite changeFavorite; //変更済み
+        private readonly SearchKeyword searchKeyword; //変更済み
+        private readonly SearchFavorite searchFavorite; //変更済み
+        private readonly SearchDate searchDate; //変更済み
+        private readonly SortDate sortDate; //変更済み
+        private readonly SortSlideList sortSlideList; //変更済み
 
         public PhotoFrameApplication(IAlbumRepository albumRepository, IPhotoRepository photoRepository, IPhotoFileService photoFileService)
         {
-            this.createAlbum = new CreateAlbum(albumRepository);
-            this.searchAlbum = new SearchAlbum(photoRepository);
-            this.searchDirectory = new SearchDirectory(photoRepository, photoFileService);
-            this.toggleFavorite = new ToggleFavorite(photoRepository);
-            this.changeAlbum = new ChangeAlbum(albumRepository, photoRepository);
+            this.createPhotoList = new CreatePhotoList(photoRepository, photoFileService); //済み
+            this.addKeyword = new AddKeyword(albumRepository); //済み
+            this.changeKeyword = new ChangeKeyword(albumRepository, photoRepository); //済み
+            this.changeFavorite = new ChangeFavorite(photoRepository); //済み
+            this.searchKeyword = new SearchKeyword(); //済み
+            this.searchFavorite = new SearchFavorite(); //済み
+            this.searchDate = new SearchDate(); //済み
+            this.sortDate = new SortDate(); //済み
+            this.sortSlideList = new SortSlideList(); //済み
         }
 
-        public int CreateAlbum(string albumName)
+        public List<Photo> CreatePhotoList(string dirpath)
         {
-            return createAlbum.Execute(albumName);
+            return createPhotoList.Execute(dirpath); //済み
         }
 
-        public IEnumerable<Photo> SearchAlbum(string albumName)
+        public int AddKeyword(string albumName)
         {
-            return searchAlbum.Execute(albumName);
+            return addKeyword.Execute(albumName); //済み
         }
 
-        public IEnumerable<Photo> SearchDirectory(string directoryName)
+        public Photo Changekeyword(Photo photo, string keytext)
         {
-            return searchDirectory.Execute(directoryName);
+            return changeKeyword.Execute(photo, keytext); //済み
         }
 
-        public Photo ToggleFavorite(Photo photo)
+        public async Task<Photo> ChangeKeywordAsync(Photo photo, string keytext)
         {
-            return toggleFavorite.Execute(photo);
-        }
+            Photo ret_photo = await changeKeyword.ExecuteAsync(photo, keytext); //済み
 
-        public Photo ChangeAlbum(Photo photo, string newAlbumName)
-        {
-            return changeAlbum.Execute(photo, newAlbumName);
-        }
-
-        public async Task<Photo> ChangeAlbumAsync(Photo photo, string newAlbumName)
-        {
-            Photo ret_photo = await changeAlbum.ExecuteAsync(photo, newAlbumName);
-            
             return ret_photo;
         }
+
+        public Photo ChangeFavorite(Photo photo)
+        {
+            return changeFavorite.Execute(photo); //済み
+        }
+
+        public async Task<Photo> ChangeFavoriteAsync(Photo photo)
+        {
+            Photo ret_photo = await changeFavorite.ExecuteAsync(photo); //済み
+            return ret_photo;
+        }
+
+        public List<Photo> SearchKeyword(List<Photo> photos, string keytext)
+        {
+            return searchKeyword.Execute(photos,keytext); //済み
+        }
+
+        public List<Photo> SearchFavorite(List<Photo> photos)
+        {
+            return searchFavorite.Execute(photos); //済み
+        }
+
+        public List<Photo> SearchDate(List<Photo> photos, DateTime s_Date, DateTime e_Date)
+        {
+            return searchDate.Execute(photos, s_Date, e_Date); //済み
+        }
+
+        public List<Photo> SortDate(List<Photo> photos, Boolean order)
+        {
+            return sortDate.Execute(photos, order); //済み
+        }
+
+        public List<Photo> SortSlideList(List<Photo> photos)
+        {
+            return sortSlideList.Execute(photos); //済み
+        }
+
+
+
+
+
+
 
     }
 }

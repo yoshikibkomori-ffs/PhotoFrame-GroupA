@@ -10,33 +10,32 @@ namespace PhotoFrame.Domain.UseCase
     /// <summary>
     /// アルバムを作成するユースケースを実現する
     /// </summary>
-    // TODO: 仮実装
-    public class CreateAlbum
+    public class AddKeyword
     {
         private readonly IAlbumRepository albumRepository;
 
-        public CreateAlbum(IAlbumRepository albumRepository)
+        public AddKeyword(IAlbumRepository albumRepository)
         {
             this.albumRepository = albumRepository;
         }
 
         /// <summary>
-        /// アルバムの登録
+        /// キーワードの登録
         /// </summary>
-        /// <param name="albumName"></param>
+        /// <param name="keytext"></param>
         /// <returns>終了状態を数値で返す</returns>
-        public int Execute(string albumName)
+        public int Execute(string keytext)
         {
-            IEnumerable<Album> result = albumRepository.Find((IQueryable<Album> albums) => (from p in albums where p.Name == albumName select p));
+            IEnumerable<Keyword> result = albumRepository.Find((IQueryable<Keyword> keywords) => (from p in keywords where p.KeyText == keytext select p));
 
-            if(albumName != "")
+            if(keytext != "")
             {
-                // 登録済みのアルバム名でない場合
+                // 登録済みのキーワード名でない場合
                 if (result == null || result.Count() == 0)
                 {
 
-                    var album = Album.Create(albumName);
-                    albumRepository.Store(album);
+                    var keyword = Keyword.Create(keytext);
+                    albumRepository.Store(keyword);
 
                     // 正常終了
                     return 0;
