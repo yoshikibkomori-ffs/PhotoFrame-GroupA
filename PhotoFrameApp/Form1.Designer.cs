@@ -34,7 +34,7 @@
             this.Display = new System.Windows.Forms.Button();
             this.DateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.Label1 = new System.Windows.Forms.Label();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.DateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.SelectDate = new System.Windows.Forms.Button();
             this.KeywordBox1 = new System.Windows.Forms.ComboBox();
             this.SelectKeyword = new System.Windows.Forms.Button();
@@ -84,6 +84,7 @@
             this.Display.TabIndex = 2;
             this.Display.Text = "Display";
             this.Display.UseVisualStyleBackColor = true;
+            this.Display.Click += new System.EventHandler(this.Display_Click);
             // 
             // DateTimePicker1
             // 
@@ -96,6 +97,7 @@
             this.DateTimePicker1.Size = new System.Drawing.Size(240, 26);
             this.DateTimePicker1.TabIndex = 3;
             this.DateTimePicker1.Value = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            this.DateTimePicker1.ValueChanged += new System.EventHandler(this.DateTimePicker1_ValueChanged);
             // 
             // Label1
             // 
@@ -107,16 +109,17 @@
             this.Label1.TabIndex = 4;
             this.Label1.Text = "～";
             // 
-            // dateTimePicker2
+            // DateTimePicker2
             // 
-            this.dateTimePicker2.Font = new System.Drawing.Font("HG明朝B", 14F);
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker2.Location = new System.Drawing.Point(295, 75);
-            this.dateTimePicker2.MaxDate = new System.DateTime(2002, 7, 12, 0, 0, 0, 0);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(240, 26);
-            this.dateTimePicker2.TabIndex = 5;
-            this.dateTimePicker2.Value = new System.DateTime(2002, 7, 12, 0, 0, 0, 0);
+            this.DateTimePicker2.Font = new System.Drawing.Font("HG明朝B", 14F);
+            this.DateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.DateTimePicker2.Location = new System.Drawing.Point(295, 75);
+            this.DateTimePicker2.MaxDate = new System.DateTime(2002, 7, 12, 0, 0, 0, 0);
+            this.DateTimePicker2.Name = "DateTimePicker2";
+            this.DateTimePicker2.Size = new System.Drawing.Size(240, 26);
+            this.DateTimePicker2.TabIndex = 5;
+            this.DateTimePicker2.Value = new System.DateTime(2002, 7, 12, 0, 0, 0, 0);
+            this.DateTimePicker2.ValueChanged += new System.EventHandler(this.DateTimePicker2_ValueChanged);
             // 
             // SelectDate
             // 
@@ -127,6 +130,7 @@
             this.SelectDate.TabIndex = 6;
             this.SelectDate.Text = "Select Date";
             this.SelectDate.UseVisualStyleBackColor = true;
+            this.SelectDate.Click += new System.EventHandler(this.SelectDate_Click);
             // 
             // KeywordBox1
             // 
@@ -263,7 +267,7 @@
             this.Controls.Add(this.SelectKeyword);
             this.Controls.Add(this.KeywordBox1);
             this.Controls.Add(this.SelectDate);
-            this.Controls.Add(this.dateTimePicker2);
+            this.Controls.Add(this.DateTimePicker2);
             this.Controls.Add(this.Label1);
             this.Controls.Add(this.DateTimePicker1);
             this.Controls.Add(this.Display);
@@ -285,7 +289,7 @@
         private System.Windows.Forms.Button Display;
         private System.Windows.Forms.DateTimePicker DateTimePicker1;
         private System.Windows.Forms.Label Label1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker DateTimePicker2;
         private System.Windows.Forms.Button SelectDate;
         private System.Windows.Forms.ComboBox KeywordBox1;
         private System.Windows.Forms.Button SelectKeyword;

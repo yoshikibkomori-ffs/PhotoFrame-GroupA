@@ -19,9 +19,18 @@ namespace PhotoFrameApp
 {
     public partial class Form1 : Form
     {
-        public Form1()
+        private KeywordRepository keywordRepository;
+        private PhotoRepository photoRepository;
+        private PhotoFileService photoFileService;
+        private List<Photo> photos;
+
+        public Form1(KeywordRepository keywordRepository, PhotoRepository photoRepository, PhotoFileService photoFileService)
         {
             InitializeComponent();
+            this.keywordRepository = keywordRepository;
+            this.photoRepository = photoRepository;
+            this.photoFileService = photoFileService;
+
         }
 
         private void Click_SeachDir(object sender, EventArgs e)
@@ -32,7 +41,86 @@ namespace PhotoFrameApp
                 TextBox1.Text = FolderBrowserDialog1.SelectedPath;
             }
         }
-        
+
+        private void Display_Click(object sender, EventArgs e)
+        {
+            ListView1.Items.Clear();
+            this.photos = Application.createPhotoList();
+            Set_PhotoList();
+        }
+
+        //private void Set_PhotoList(List<Photo> photoList)
+        private void Set_PhotoList()
+        {
+            if(photos != null)
+            {
+                foreach (var photo in photos)
+                {
+                    string PhotoName, KeyWord ,isFavorite, PhotoDateTime;
+
+                    //if (photo.Name != null)
+                    //{
+                    //    PhotoName = photo.Name;
+                    //}
+                    //else
+                    //{
+                    //    PhotoName = "";
+                    //}
+
+                    if (photo.keyWord.keyWord)
+                    {
+                        KeyWord = photo.keyWord.keyWord;
+                    }
+                    else
+                    {
+                        KeyWord = "";
+                    }
+
+                    if (photo.IsFavorite)
+                    {
+                        isFavorite = "★";
+                    }
+                    else
+                    {
+                        isFavorite = "";
+                    }
+
+                    if (photo.Date != null)
+                    {
+                        PhotoDateTime = photo.Date.ToString();
+                    }
+                    else
+                    {
+                        PhotoDateTime = "";
+                    }
+
+                    string[] item = { Path.GetFileName(photo.filePath), KeyWord, isFavorite, PhotoDateTime };
+                    ListView1.Items.Add(new ListViewItem(item));
+                }
+                
+
+            }
+            
+        }
+
+        private void DateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DateTimePicker2_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SelectDate_Click(object sender, EventArgs e)
+        {
+
+            DateTime s_Date = DateTimePicker1.Value;
+            DateTime e_Date = DateTimePicker2.Value;
+            this.photos = Application.SearchDate(this.photos, s_Date, e_Date);
+            Set_PhotoList();
+        }
     }
 }
 
