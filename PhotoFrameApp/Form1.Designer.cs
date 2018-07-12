@@ -28,290 +28,278 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.button_CreateAlbum = new System.Windows.Forms.Button();
-            this.textBox_CreateAlbum = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.radioButton_AlbumName = new System.Windows.Forms.RadioButton();
-            this.radioButton_DirectoryName = new System.Windows.Forms.RadioButton();
-            this.button_Search = new System.Windows.Forms.Button();
-            this.textBox_Search = new System.Windows.Forms.TextBox();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.listView_PhotoList = new System.Windows.Forms.ListView();
-            this.columnHeader_PhotoPath = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader_AlbumName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader_Favorite = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.comboBox_ChangeAlbum = new System.Windows.Forms.ComboBox();
-            this.button_ChangeAlbum = new System.Windows.Forms.Button();
-            this.button_ToggleFavorite = new System.Windows.Forms.Button();
-            this.button_SlideShow = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.Panel2.SuspendLayout();
-            this.splitContainer1.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
-            this.splitContainer2.Panel1.SuspendLayout();
-            this.splitContainer2.Panel2.SuspendLayout();
-            this.splitContainer2.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.TextBox1 = new System.Windows.Forms.TextBox();
+            this.SelectDir = new System.Windows.Forms.Button();
+            this.FolderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.Display = new System.Windows.Forms.Button();
+            this.DateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.Label1 = new System.Windows.Forms.Label();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.SelectDate = new System.Windows.Forms.Button();
+            this.KeywordBox1 = new System.Windows.Forms.ComboBox();
+            this.SelectKeyword = new System.Windows.Forms.Button();
+            this.SelectFavorite = new System.Windows.Forms.Button();
+            this.ListView1 = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.PictureBox1 = new System.Windows.Forms.PictureBox();
+            this.KeywordBox2 = new System.Windows.Forms.ComboBox();
+            this.AddKeyword = new System.Windows.Forms.Button();
+            this.ToggleFavorite = new System.Windows.Forms.Button();
+            this.SlideShow = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // splitContainer1
+            // TextBox1
             // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Name = "splitContainer1";
-            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.TextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TextBox1.BackColor = System.Drawing.Color.White;
+            this.TextBox1.Font = new System.Drawing.Font("HG明朝B", 14F);
+            this.TextBox1.Location = new System.Drawing.Point(20, 30);
+            this.TextBox1.Name = "TextBox1";
+            this.TextBox1.ReadOnly = true;
+            this.TextBox1.Size = new System.Drawing.Size(420, 26);
+            this.TextBox1.TabIndex = 0;
             // 
-            // splitContainer1.Panel1
+            // SelectDir
             // 
-            this.splitContainer1.Panel1.AccessibleRole = System.Windows.Forms.AccessibleRole.IpAddress;
-            this.splitContainer1.Panel1.Controls.Add(this.panel3);
-            this.splitContainer1.Panel1.Controls.Add(this.panel1);
+            this.SelectDir.Font = new System.Drawing.Font("Century", 10F);
+            this.SelectDir.Location = new System.Drawing.Point(445, 29);
+            this.SelectDir.Name = "SelectDir";
+            this.SelectDir.Size = new System.Drawing.Size(90, 30);
+            this.SelectDir.TabIndex = 1;
+            this.SelectDir.Text = "Select Dir";
+            this.SelectDir.UseVisualStyleBackColor = true;
+            this.SelectDir.Click += new System.EventHandler(this.Click_SeachDir);
             // 
-            // splitContainer1.Panel2
+            // Display
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(576, 546);
-            this.splitContainer1.SplitterDistance = 126;
-            this.splitContainer1.TabIndex = 0;
+            this.Display.Font = new System.Drawing.Font("Century", 10F);
+            this.Display.Location = new System.Drawing.Point(550, 29);
+            this.Display.Name = "Display";
+            this.Display.Size = new System.Drawing.Size(90, 30);
+            this.Display.TabIndex = 2;
+            this.Display.Text = "Display";
+            this.Display.UseVisualStyleBackColor = true;
             // 
-            // panel3
+            // DateTimePicker1
             // 
-            this.panel3.Controls.Add(this.button_CreateAlbum);
-            this.panel3.Controls.Add(this.textBox_CreateAlbum);
-            this.panel3.Controls.Add(this.label1);
-            this.panel3.Location = new System.Drawing.Point(42, 75);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(425, 31);
-            this.panel3.TabIndex = 2;
+            this.DateTimePicker1.CalendarFont = new System.Drawing.Font("HG明朝B", 14F);
+            this.DateTimePicker1.Font = new System.Drawing.Font("HG明朝B", 14F);
+            this.DateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.DateTimePicker1.Location = new System.Drawing.Point(20, 75);
+            this.DateTimePicker1.MaxDate = new System.DateTime(2018, 7, 11, 19, 46, 4, 0);
+            this.DateTimePicker1.Name = "DateTimePicker1";
+            this.DateTimePicker1.Size = new System.Drawing.Size(240, 26);
+            this.DateTimePicker1.TabIndex = 3;
+            this.DateTimePicker1.Value = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             // 
-            // button_CreateAlbum
+            // Label1
             // 
-            this.button_CreateAlbum.Location = new System.Drawing.Point(340, 5);
-            this.button_CreateAlbum.Name = "button_CreateAlbum";
-            this.button_CreateAlbum.Size = new System.Drawing.Size(56, 23);
-            this.button_CreateAlbum.TabIndex = 1;
-            this.button_CreateAlbum.Text = "作成";
-            this.button_CreateAlbum.UseVisualStyleBackColor = true;
-            this.button_CreateAlbum.Click += new System.EventHandler(this.button_CreateAlbum_Click);
+            this.Label1.AutoSize = true;
+            this.Label1.Font = new System.Drawing.Font("HG明朝B", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.Label1.Location = new System.Drawing.Point(263, 84);
+            this.Label1.Name = "Label1";
+            this.Label1.Size = new System.Drawing.Size(29, 19);
+            this.Label1.TabIndex = 4;
+            this.Label1.Text = "～";
             // 
-            // textBox_CreateAlbum
+            // dateTimePicker2
             // 
-            this.textBox_CreateAlbum.Location = new System.Drawing.Point(78, 7);
-            this.textBox_CreateAlbum.Name = "textBox_CreateAlbum";
-            this.textBox_CreateAlbum.Size = new System.Drawing.Size(256, 19);
-            this.textBox_CreateAlbum.TabIndex = 0;
-            this.textBox_CreateAlbum.Text = "Album1";
+            this.dateTimePicker2.Font = new System.Drawing.Font("HG明朝B", 14F);
+            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker2.Location = new System.Drawing.Point(295, 75);
+            this.dateTimePicker2.MaxDate = new System.DateTime(2002, 7, 12, 0, 0, 0, 0);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(240, 26);
+            this.dateTimePicker2.TabIndex = 5;
+            this.dateTimePicker2.Value = new System.DateTime(2002, 7, 12, 0, 0, 0, 0);
             // 
-            // label1
+            // SelectDate
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 8);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(56, 12);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "アルバム名";
+            this.SelectDate.Font = new System.Drawing.Font("Century", 10F);
+            this.SelectDate.Location = new System.Drawing.Point(550, 75);
+            this.SelectDate.Name = "SelectDate";
+            this.SelectDate.Size = new System.Drawing.Size(90, 30);
+            this.SelectDate.TabIndex = 6;
+            this.SelectDate.Text = "Select Date";
+            this.SelectDate.UseVisualStyleBackColor = true;
             // 
-            // panel1
+            // KeywordBox1
             // 
-            this.panel1.Controls.Add(this.radioButton_AlbumName);
-            this.panel1.Controls.Add(this.radioButton_DirectoryName);
-            this.panel1.Controls.Add(this.button_Search);
-            this.panel1.Controls.Add(this.textBox_Search);
-            this.panel1.Location = new System.Drawing.Point(42, 3);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(425, 57);
-            this.panel1.TabIndex = 0;
+            this.KeywordBox1.BackColor = System.Drawing.Color.White;
+            this.KeywordBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.KeywordBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.KeywordBox1.Font = new System.Drawing.Font("HG明朝B", 14F);
+            this.KeywordBox1.FormattingEnabled = true;
+            this.KeywordBox1.Location = new System.Drawing.Point(20, 120);
+            this.KeywordBox1.Name = "KeywordBox1";
+            this.KeywordBox1.Size = new System.Drawing.Size(240, 27);
+            this.KeywordBox1.TabIndex = 7;
             // 
-            // radioButton_AlbumName
+            // SelectKeyword
             // 
-            this.radioButton_AlbumName.AutoSize = true;
-            this.radioButton_AlbumName.Location = new System.Drawing.Point(112, 9);
-            this.radioButton_AlbumName.Name = "radioButton_AlbumName";
-            this.radioButton_AlbumName.Size = new System.Drawing.Size(74, 16);
-            this.radioButton_AlbumName.TabIndex = 1;
-            this.radioButton_AlbumName.Text = "アルバム名";
-            this.radioButton_AlbumName.UseVisualStyleBackColor = true;
+            this.SelectKeyword.Font = new System.Drawing.Font("Century", 10F);
+            this.SelectKeyword.Location = new System.Drawing.Point(263, 120);
+            this.SelectKeyword.Name = "SelectKeyword";
+            this.SelectKeyword.Size = new System.Drawing.Size(90, 30);
+            this.SelectKeyword.TabIndex = 8;
+            this.SelectKeyword.Text = "Select Key";
+            this.SelectKeyword.UseVisualStyleBackColor = true;
             // 
-            // radioButton_DirectoryName
+            // SelectFavorite
             // 
-            this.radioButton_DirectoryName.AutoSize = true;
-            this.radioButton_DirectoryName.Checked = true;
-            this.radioButton_DirectoryName.Location = new System.Drawing.Point(18, 9);
-            this.radioButton_DirectoryName.Name = "radioButton_DirectoryName";
-            this.radioButton_DirectoryName.Size = new System.Drawing.Size(70, 16);
-            this.radioButton_DirectoryName.TabIndex = 0;
-            this.radioButton_DirectoryName.TabStop = true;
-            this.radioButton_DirectoryName.Text = "フォルダ名";
-            this.radioButton_DirectoryName.UseVisualStyleBackColor = true;
+            this.SelectFavorite.Font = new System.Drawing.Font("Century", 10F);
+            this.SelectFavorite.Location = new System.Drawing.Point(550, 120);
+            this.SelectFavorite.Name = "SelectFavorite";
+            this.SelectFavorite.Size = new System.Drawing.Size(90, 30);
+            this.SelectFavorite.TabIndex = 9;
+            this.SelectFavorite.Text = "Select Fav";
+            this.SelectFavorite.UseVisualStyleBackColor = true;
             // 
-            // button_Search
+            // ListView1
             // 
-            this.button_Search.Location = new System.Drawing.Point(340, 31);
-            this.button_Search.Name = "button_Search";
-            this.button_Search.Size = new System.Drawing.Size(56, 23);
-            this.button_Search.TabIndex = 3;
-            this.button_Search.Text = "検索";
-            this.button_Search.UseVisualStyleBackColor = true;
-            this.button_Search.Click += new System.EventHandler(this.button_Search_Click);
+            this.ListView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4});
+            this.ListView1.Font = new System.Drawing.Font("Century", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.ListView1.FullRowSelect = true;
+            this.ListView1.LabelWrap = false;
+            this.ListView1.Location = new System.Drawing.Point(20, 165);
+            this.ListView1.Name = "ListView1";
+            this.ListView1.OwnerDraw = true;
+            this.ListView1.Size = new System.Drawing.Size(333, 280);
+            this.ListView1.TabIndex = 10;
+            this.ListView1.UseCompatibleStateImageBehavior = false;
+            this.ListView1.View = System.Windows.Forms.View.Details;
             // 
-            // textBox_Search
+            // columnHeader1
             // 
-            this.textBox_Search.Location = new System.Drawing.Point(78, 35);
-            this.textBox_Search.Name = "textBox_Search";
-            this.textBox_Search.Size = new System.Drawing.Size(256, 19);
-            this.textBox_Search.TabIndex = 2;
-            this.textBox_Search.Text = "Album1";
+            this.columnHeader1.Text = "File Name";
+            this.columnHeader1.Width = 100;
             // 
-            // splitContainer2
+            // columnHeader2
             // 
-            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer2.Name = "splitContainer2";
-            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.columnHeader2.Text = "Keyword";
+            this.columnHeader2.Width = 120;
             // 
-            // splitContainer2.Panel1
+            // columnHeader3
             // 
-            this.splitContainer2.Panel1.Controls.Add(this.listView_PhotoList);
+            this.columnHeader3.Text = "★";
+            this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader3.Width = 25;
             // 
-            // splitContainer2.Panel2
+            // columnHeader4
             // 
-            this.splitContainer2.Panel2.Controls.Add(this.panel2);
-            this.splitContainer2.Panel2.Controls.Add(this.button_ToggleFavorite);
-            this.splitContainer2.Panel2.Controls.Add(this.button_SlideShow);
-            this.splitContainer2.Size = new System.Drawing.Size(576, 416);
-            this.splitContainer2.SplitterDistance = 309;
-            this.splitContainer2.TabIndex = 0;
+            this.columnHeader4.Text = "Date";
+            this.columnHeader4.Width = 80;
             // 
-            // listView_PhotoList
+            // PictureBox1
             // 
-            this.listView_PhotoList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader_PhotoPath,
-            this.columnHeader_AlbumName,
-            this.columnHeader_Favorite});
-            this.listView_PhotoList.FullRowSelect = true;
-            this.listView_PhotoList.Location = new System.Drawing.Point(23, 13);
-            this.listView_PhotoList.Name = "listView_PhotoList";
-            this.listView_PhotoList.Size = new System.Drawing.Size(530, 278);
-            this.listView_PhotoList.TabIndex = 0;
-            this.listView_PhotoList.UseCompatibleStateImageBehavior = false;
-            this.listView_PhotoList.View = System.Windows.Forms.View.Details;
+            this.PictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
+            this.PictureBox1.Location = new System.Drawing.Point(360, 165);
+            this.PictureBox1.Name = "PictureBox1";
+            this.PictureBox1.Size = new System.Drawing.Size(280, 280);
+            this.PictureBox1.TabIndex = 14;
+            this.PictureBox1.TabStop = false;
             // 
-            // columnHeader_PhotoPath
+            // KeywordBox2
             // 
-            this.columnHeader_PhotoPath.Text = "ファイルパス";
-            this.columnHeader_PhotoPath.Width = 294;
+            this.KeywordBox2.DropDownWidth = 265;
+            this.KeywordBox2.Font = new System.Drawing.Font("HG明朝B", 14F);
+            this.KeywordBox2.FormattingEnabled = true;
+            this.KeywordBox2.Location = new System.Drawing.Point(20, 460);
+            this.KeywordBox2.Name = "KeywordBox2";
+            this.KeywordBox2.Size = new System.Drawing.Size(240, 27);
+            this.KeywordBox2.TabIndex = 11;
             // 
-            // columnHeader_AlbumName
+            // AddKeyword
             // 
-            this.columnHeader_AlbumName.Text = "アルバム名";
-            this.columnHeader_AlbumName.Width = 140;
+            this.AddKeyword.Font = new System.Drawing.Font("Century", 10F);
+            this.AddKeyword.Location = new System.Drawing.Point(263, 460);
+            this.AddKeyword.Name = "AddKeyword";
+            this.AddKeyword.Size = new System.Drawing.Size(90, 30);
+            this.AddKeyword.TabIndex = 12;
+            this.AddKeyword.Text = "Add Key";
+            this.AddKeyword.UseVisualStyleBackColor = true;
             // 
-            // columnHeader_Favorite
+            // ToggleFavorite
             // 
-            this.columnHeader_Favorite.Text = "お気に入り";
-            this.columnHeader_Favorite.Width = 85;
+            this.ToggleFavorite.Font = new System.Drawing.Font("Century", 10F);
+            this.ToggleFavorite.Location = new System.Drawing.Point(360, 460);
+            this.ToggleFavorite.Name = "ToggleFavorite";
+            this.ToggleFavorite.Size = new System.Drawing.Size(90, 30);
+            this.ToggleFavorite.TabIndex = 13;
+            this.ToggleFavorite.Text = "Toggle Fav";
+            this.ToggleFavorite.UseVisualStyleBackColor = true;
             // 
-            // panel2
+            // SlideShow
             // 
-            this.panel2.Controls.Add(this.comboBox_ChangeAlbum);
-            this.panel2.Controls.Add(this.button_ChangeAlbum);
-            this.panel2.Location = new System.Drawing.Point(104, 23);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(334, 50);
-            this.panel2.TabIndex = 0;
-            // 
-            // comboBox_ChangeAlbum
-            // 
-            this.comboBox_ChangeAlbum.FormattingEnabled = true;
-            this.comboBox_ChangeAlbum.Location = new System.Drawing.Point(18, 16);
-            this.comboBox_ChangeAlbum.Name = "comboBox_ChangeAlbum";
-            this.comboBox_ChangeAlbum.Size = new System.Drawing.Size(190, 20);
-            this.comboBox_ChangeAlbum.TabIndex = 0;
-            // 
-            // button_ChangeAlbum
-            // 
-            this.button_ChangeAlbum.Location = new System.Drawing.Point(225, 16);
-            this.button_ChangeAlbum.Name = "button_ChangeAlbum";
-            this.button_ChangeAlbum.Size = new System.Drawing.Size(88, 23);
-            this.button_ChangeAlbum.TabIndex = 1;
-            this.button_ChangeAlbum.Text = "アルバム変更";
-            this.button_ChangeAlbum.UseVisualStyleBackColor = true;
-            this.button_ChangeAlbum.Click += new System.EventHandler(this.button_ChangeAlbum_Click);
-            // 
-            // button_ToggleFavorite
-            // 
-            this.button_ToggleFavorite.Location = new System.Drawing.Point(464, 23);
-            this.button_ToggleFavorite.Name = "button_ToggleFavorite";
-            this.button_ToggleFavorite.Size = new System.Drawing.Size(89, 23);
-            this.button_ToggleFavorite.TabIndex = 0;
-            this.button_ToggleFavorite.Text = "お気に入り";
-            this.button_ToggleFavorite.UseVisualStyleBackColor = true;
-            this.button_ToggleFavorite.Click += new System.EventHandler(this.button_ToggleFavorite_Click);
-            // 
-            // button_SlideShow
-            // 
-            this.button_SlideShow.Location = new System.Drawing.Point(464, 52);
-            this.button_SlideShow.Name = "button_SlideShow";
-            this.button_SlideShow.Size = new System.Drawing.Size(89, 23);
-            this.button_SlideShow.TabIndex = 1;
-            this.button_SlideShow.Text = "スライドショー";
-            this.button_SlideShow.UseVisualStyleBackColor = true;
-            this.button_SlideShow.Click += new System.EventHandler(this.button_SlideShow_Click);
+            this.SlideShow.Font = new System.Drawing.Font("Century", 10F);
+            this.SlideShow.Location = new System.Drawing.Point(550, 460);
+            this.SlideShow.Name = "SlideShow";
+            this.SlideShow.Size = new System.Drawing.Size(90, 30);
+            this.SlideShow.TabIndex = 15;
+            this.SlideShow.Text = "Slide Show";
+            this.SlideShow.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(576, 546);
-            this.Controls.Add(this.splitContainer1);
+            this.ClientSize = new System.Drawing.Size(664, 507);
+            this.Controls.Add(this.SlideShow);
+            this.Controls.Add(this.ToggleFavorite);
+            this.Controls.Add(this.AddKeyword);
+            this.Controls.Add(this.KeywordBox2);
+            this.Controls.Add(this.PictureBox1);
+            this.Controls.Add(this.ListView1);
+            this.Controls.Add(this.SelectFavorite);
+            this.Controls.Add(this.SelectKeyword);
+            this.Controls.Add(this.KeywordBox1);
+            this.Controls.Add(this.SelectDate);
+            this.Controls.Add(this.dateTimePicker2);
+            this.Controls.Add(this.Label1);
+            this.Controls.Add(this.DateTimePicker1);
+            this.Controls.Add(this.Display);
+            this.Controls.Add(this.SelectDir);
+            this.Controls.Add(this.TextBox1);
             this.Name = "Form1";
             this.Text = "Form1";
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.splitContainer2.Panel1.ResumeLayout(false);
-            this.splitContainer2.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
-            this.splitContainer2.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.SplitContainer splitContainer2;
-        private System.Windows.Forms.ListView listView_PhotoList;
-        private System.Windows.Forms.ColumnHeader columnHeader_PhotoPath;
-        private System.Windows.Forms.ColumnHeader columnHeader_AlbumName;
-        private System.Windows.Forms.ColumnHeader columnHeader_Favorite;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button_Search;
-        private System.Windows.Forms.TextBox textBox_Search;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.ComboBox comboBox_ChangeAlbum;
-        private System.Windows.Forms.Button button_ChangeAlbum;
-        private System.Windows.Forms.Button button_ToggleFavorite;
-        private System.Windows.Forms.Button button_SlideShow;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Button button_CreateAlbum;
-        private System.Windows.Forms.TextBox textBox_CreateAlbum;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.RadioButton radioButton_AlbumName;
-        private System.Windows.Forms.RadioButton radioButton_DirectoryName;
+        private System.Windows.Forms.TextBox TextBox1;
+        private System.Windows.Forms.Button SelectDir;
+        private System.Windows.Forms.FolderBrowserDialog FolderBrowserDialog1;
+        private System.Windows.Forms.Button Display;
+        private System.Windows.Forms.DateTimePicker DateTimePicker1;
+        private System.Windows.Forms.Label Label1;
+        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.Button SelectDate;
+        private System.Windows.Forms.ComboBox KeywordBox1;
+        private System.Windows.Forms.Button SelectKeyword;
+        private System.Windows.Forms.Button SelectFavorite;
+        private System.Windows.Forms.ListView ListView1;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.PictureBox PictureBox1;
+        private System.Windows.Forms.ComboBox KeywordBox2;
+        private System.Windows.Forms.Button AddKeyword;
+        private System.Windows.Forms.Button ToggleFavorite;
+        private System.Windows.Forms.Button SlideShow;
     }
 }
 
