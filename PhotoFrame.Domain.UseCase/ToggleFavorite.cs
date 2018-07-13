@@ -4,16 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PhotoFrame.Domain.Model;
+using PhotoFrame.Persistence.Csv;
 
 namespace PhotoFrame.Domain.UseCase
 {
-    public class ChangeFavorite
+    public class ToggleFavorite
     {
         private readonly PhotoRepository photoRepository;
 
-        public ChangeFavorite(PhotoRepository in_photoRepository)
+        public ChangeFavorite(PhotoRepository photoRepository)
         {
-            this.photoRepository = in_photoRepository;
+            this.photoRepository = photoRepository;
         }
 
         /// <summary>
@@ -24,26 +25,17 @@ namespace PhotoFrame.Domain.UseCase
         /// <returns></returns>
         public Photo Execute(Photo photo)
         {
-            photo.ToggleFavorite();
+           if(photo.IsFavorite == true)
+            {
+                photo.MarkAsUnFavorite();
+            }
+            else
+            {
+                photo.MarkAsFavorite();
+            }
 
             photoRepository.Store(photo);
-
-            return photo;
-        }
-
-        /// <summary>
-        /// 非同期
-        /// </summary>
-        /// <param name="photo"></param>
-        /// <returns></returns>
-        public async Task<Photo> ExecuteAsync(Photo photo)
-        {
-            photo.ToggleFavorite();
-
-            await Task.Run(() =>
-            {
-                photoRepository.Store(photo);
-            });
+            
 
             return photo;
         }

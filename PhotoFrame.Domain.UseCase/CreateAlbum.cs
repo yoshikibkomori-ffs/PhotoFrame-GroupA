@@ -4,33 +4,35 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PhotoFrame.Persistence.Csv;
 
 namespace PhotoFrame.Domain.UseCase
 {
     /// <summary>
     /// アルバムを作成するユースケースを実現する
     /// </summary>
-    public class AddKeyword
+    // TODO: 仮実装
+    public class CreateAlbum
     {
         private readonly KeywordRepository keywordRepository;
 
-        public AddKeyword(KeywordRepository in_keywordRepository)
+        public AddKeyword(KeywordRepository keywordRepository)
         {
-            this.keyowrdRepository = in_keywordRepository;
+            this.keywordRepository = keywordRepository;
         }
 
         /// <summary>
-        /// キーワードの登録
+        /// アルバムの登録
         /// </summary>
-        /// <param name="keytext"></param>
+        /// <param name="albumName"></param>
         /// <returns>終了状態を数値で返す</returns>
-        public int Execute(string keytext)
+        public int Execute(string albumName)
         {
             IEnumerable<Keyword> result = keywordRepository.Find((IQueryable<Keyword> keywords) => (from p in keywords where p.KeyText == keytext select p));
 
-            if(keytext != "")
+            if(albumName != "")
             {
-                // 登録済みのキーワード名でない場合
+                // 登録済みのアルバム名でない場合
                 if (result == null || result.Count() == 0)
                 {
 

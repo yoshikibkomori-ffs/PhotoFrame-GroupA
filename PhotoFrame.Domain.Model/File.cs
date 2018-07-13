@@ -38,7 +38,7 @@ namespace PhotoFrame.Domain.Model
 
         private File() { }
 
-        public void addDateTime(DateTime date)
+        public void AddDateTime(DateTime date)
         {
             this.Date = date;
         }
