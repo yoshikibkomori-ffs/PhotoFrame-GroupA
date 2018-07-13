@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PhotoFrame.Domain.Model;
+using PhotoFrame.Persistence.Repositories.EF;
 
 namespace PhotoFrame.Domain.UseCase
 {
@@ -24,12 +25,15 @@ namespace PhotoFrame.Domain.UseCase
         /// <returns></returns>
         public Photo Execute(Photo photo)
         {
+            //Photoインスタンスが入力されていない場合
             if (photo == null)
             {
                 throw new ArgumentNullException("写真が選択されていません");
             }
-            photo.ToggleFavorite();
 
+            //写真のお気に入りを登録
+            photo.ToggleFavorite();
+            //情報を更新
             photoRepository.Store(photo);
 
             return photo;
@@ -42,12 +46,15 @@ namespace PhotoFrame.Domain.UseCase
         /// <returns></returns>
         public async Task<Photo> ExecuteAsync(Photo photo)
         {
+            //Photoインスタンスが入力されていない場合
             if (photo == null)
             {
                 throw new ArgumentNullException("写真が選択されていません");
             }
-            photo.ToggleFavorite();
 
+            //写真のお気に入りを登録
+            photo.ToggleFavorite();
+            //情報を更新
             await Task.Run(() =>
             {
                 photoRepository.Store(photo);

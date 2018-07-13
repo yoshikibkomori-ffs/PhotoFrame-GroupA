@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PhotoFrame.Persistence.EF
+namespace PhotoFrame.Persistence.Repositories.EF
 {
     //PhotoRepository(DB)
-    class PhotoRepository
+    public class PhotoRepository
     {
         //コンストラクタ
         public PhotoRepository()
@@ -60,7 +60,7 @@ namespace PhotoFrame.Persistence.EF
 
         private static Photo Convert_MPhoto_to_Photo(Table_Photo table_Photo)
         {
-            Photo photo = new Photo(table_Photo.Id, new Domain.Model.File(table_Photo.FilePath), Convert.ToBoolean(table_Photo.IsFavorite), new Keyword(table_Photo.KeywordId,table_Photo.Table_Keyword.Keytext));
+            Photo photo = new Photo(table_Photo.Id, new Domain.Model.File(table_Photo.FilePath), Convert.ToBoolean(table_Photo.IsFavorite), new Keyword(table_Photo.KeywordId, table_Photo.Table_Keyword.Keytext));
             photo.File.AddDateTime(table_Photo.DateTime);
             return photo;
         }

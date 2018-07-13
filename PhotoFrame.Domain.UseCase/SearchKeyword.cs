@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PhotoFrame.Domain.Model;
-using PhotoFrame.Persistence.Csv;
 
 namespace PhotoFrame.Domain.UseCase
 {
