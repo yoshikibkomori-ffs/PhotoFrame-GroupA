@@ -123,59 +123,59 @@ namespace PhotoFrameApp
         }
         private void PrevA()  //Active
         {
-            PrevBox.Image = System.Drawing.Image.FromFile(@"..\img\0 PrevA.png");
+            PrevBox.Image = System.Drawing.Image.FromFile(@"..\..\img\0 PrevA.png");
         }
         private void PrevNA()  //NonActive
         {
-            PrevBox.Image = System.Drawing.Image.FromFile(@"..\img\0 PrevNA.png");
+            PrevBox.Image = System.Drawing.Image.FromFile(@"..\..\img\0 PrevNA.png");
         }
         private void NextA()  //Active
         {
-            NextBox.Image = System.Drawing.Image.FromFile(@"..\img\0 NextA.png");
+            NextBox.Image = System.Drawing.Image.FromFile(@"..\..\img\0 NextA.png");
         }
         private void NextNA()  //NonActive
         {
-            NextBox.Image = System.Drawing.Image.FromFile(@"..\img\0 NextNA.png");
+            NextBox.Image = System.Drawing.Image.FromFile(@"..\..\img\0 NextNA.png");
         }
         private void Start()  //Active
         {
-            StartStopBox.Image = System.Drawing.Image.FromFile(@"..\img\StartA.png");
+            StartStopBox.Image = System.Drawing.Image.FromFile(@"..\..\img\StartA.png");
         }
         private void Stop()  //Active
         {
-            StartStopBox.Image = System.Drawing.Image.FromFile(@"..\img\StopA.png");
+            StartStopBox.Image = System.Drawing.Image.FromFile(@"..\..\img\StopA.png");
         }
         private void StartMD()  //MouseDown
         {
-            StartStopBox.Image = System.Drawing.Image.FromFile(@"..\img\StartMD.png");
+            StartStopBox.Image = System.Drawing.Image.FromFile(@"..\..\img\StartMD.png");
         }
         private void StopMD()  //MouseDown
         {
-            StartStopBox.Image = System.Drawing.Image.FromFile(@"..\img\StopMD.png");
+            StartStopBox.Image = System.Drawing.Image.FromFile(@"..\..\img\StopMD.png");
         }
         private void Random()  //Active
         {
-            RandomBox.Image = System.Drawing.Image.FromFile(@"..\img\RandomA.png");
+            RandomBox.Image = System.Drawing.Image.FromFile(@"..\..\img\RandomA.png");
         }
         private void RandomNA()  //NonActive
         {
-            RandomBox.Image = System.Drawing.Image.FromFile(@"..\img\RandomNA.png");
+            RandomBox.Image = System.Drawing.Image.FromFile(@"..\..\img\RandomNA.png");
         }
         private void RandomMD()  //MouseDown
         {
-            RandomBox.Image = System.Drawing.Image.FromFile(@"..\img\RandomMD.png");
+            RandomBox.Image = System.Drawing.Image.FromFile(@"..\..\img\RandomMD.png");
         }
         private void Repeat()  //Active
         {
-            RepeatBox.Image = System.Drawing.Image.FromFile(@"..\img\RepeatA.png");
+            RepeatBox.Image = System.Drawing.Image.FromFile(@"..\..\img\RepeatA.png");
         }
         private void RepeatNA()  //NonActive
         {
-            RepeatBox.Image = System.Drawing.Image.FromFile(@"..\img\RepeatNA.png");
+            RepeatBox.Image = System.Drawing.Image.FromFile(@"..\..\img\RepeatNA.png");
         }
         private void RepeatMD()  //MouseDown
         {
-            RepeatBox.Image = System.Drawing.Image.FromFile(@"..\img\RepeatMD.png");
+            RepeatBox.Image = System.Drawing.Image.FromFile(@"..\..\img\RepeatMD.png");
         }
         #endregion
     }
