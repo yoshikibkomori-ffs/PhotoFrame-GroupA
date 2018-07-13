@@ -8,10 +8,7 @@ using System.IO;
 
 namespace PhotoFrame.Persistence
 {
-    /// <summary>
-    /// <see cref="IPhotoFileService">の実装クラス
-    /// </summary>
-    class PhotoFileService : IPhotoFileService
+    public class PhotoFileService
     {
         public IEnumerable<Domain.Model.File> FindAllPhotoFilesFromDirectory(string directory)
         {
@@ -22,21 +19,31 @@ namespace PhotoFrame.Persistence
             if (Directory.Exists(directory))
             {
                 List<string> path_list = Enumerate(directory);
-
                 foreach (string filePath in path_list)
                 {
                     Domain.Model.File file = new Domain.Model.File(filePath);
-
-                    if(file.IsPhoto)
+                    if (file.IsPhoto)
                     {
-                        file_list.Add(file);
+                        using (System.Drawing.Bitmap bmp = new System.Drawing.Bitmap(filePath))
+                        {
+                            foreach (System.Drawing.Imaging.PropertyItem item in bmp.PropertyItems)
+                            {
+                                //Exif情報から撮影時間を取得する
+                                if (item.Id == 0x9003 && item.Type == 2)
+                                {
+                                    //文字列に変換する
+                                    string val = System.Text.Encoding.ASCII.GetString(item.Value);
+                                    val = val.Trim(new char[] { '\0' });
+                                    //DateTimeに変換
+                                    file.AddDateTime(DateTime.ParseExact(val, "yyyy:MM:dd HH:mm:ss", null));
+                                }
+                            }
+                            file_list.Add(file);
+                        }
                     }
                 }
-
             }
-
             return file_list;
-            
         }
 
         private List<string> Enumerate(string dir)
@@ -51,11 +58,11 @@ namespace PhotoFrame.Persistence
 
             string[] dirs = Directory.GetDirectories(dir);
 
-            foreach(string s in dirs)
+            foreach (string s in dirs)
             {
                 List<string> temp_list = Enumerate(s);
 
-                foreach(string t in temp_list)
+                foreach (string t in temp_list)
                 {
                     file_list.Add(t);
                 }
