@@ -12,7 +12,8 @@ using PhotoFrame.Domain;
 using PhotoFrame.Domain.Model;
 using PhotoFrame.Domain.UseCase;
 using PhotoFrame.Persistence;
-using PhotoFrame.Persistence.Csv;
+using PhotoFrame.Persistence.Repositories.EF;
+using PhotoFrame.Persistence.EF;
 using System.IO;
 
 namespace PhotoFrameApp
@@ -23,7 +24,7 @@ namespace PhotoFrameApp
         private KeywordRepository keywordRepository;
         private PhotoRepository photoRepository;
         private PhotoFileService photoFileService;
-        private List<Photo> photos; 
+        private List<Photo> photos;
 
         private AddKeyword addKeyword;
         private ChangeFavorite changeFavorite;
@@ -43,7 +44,7 @@ namespace PhotoFrameApp
             addKeyword = new AddKeyword(keywordRepository);
             changeFavorite = new ChangeFavorite(photoRepository);
             changeKeyword = new ChangeKeyword(keywordRepository, photoRepository);
-            createPhotoList = new CreatePhotoList(photoRepository, photoFileService);
+            createPhotoList = new CreatePhotoList(photoRepository,photoFileService);
             searchDate = new SearchDate();
             searchFavorite = new SearchFavorite();
             searchKeyword = new SearchKeyword();
@@ -71,8 +72,9 @@ namespace PhotoFrameApp
         /// <param name="e"></param>
         private void Click_Display(object sender, EventArgs e)
         {
+            string dirpath = TextBox1.Text;
             ListView1.Items.Clear();
-            this.photos = createPhotoList.Execute(photoRepository,photoFileService);
+            this.photos = createPhotoList.Execute(dirpath);
             Set_PhotoList();
         } 
 
@@ -180,7 +182,8 @@ namespace PhotoFrameApp
         /// <param name="e"></param>
         private void Click_SlideShow(object sender, EventArgs e)
         {
-            SlideShow slideShowForm = new SlideShow(this.photos);
+            //SlideShow slideShowForm = new SlideShow(this.photos);
+            SlideShow slideShowForm = new SlideShow();
             slideShowForm.ShowDialog();
 
         }
@@ -243,9 +246,9 @@ namespace PhotoFrameApp
                         isFavorite = "";
                     }
 
-                    if (photo.File.Date != null)
+                    if (photo.File.DateTime != null)
                     {
-                        PhotoDateTime = photo.File.Date.ToString();
+                        PhotoDateTime = photo.File.DateTime.ToString();
                     }
                     else
                     {
@@ -287,9 +290,9 @@ namespace PhotoFrameApp
                 isFavorite = "";
             }
 
-            if (photo.File.Date != null)
+            if (photo.File.DateTime != null)
             {
-                PhotoDateTime = photo.File.Date.ToString();
+                PhotoDateTime = photo.File.DateTime.ToString();
             }
             else
             {

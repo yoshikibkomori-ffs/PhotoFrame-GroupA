@@ -4,7 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using PhotoFrame.Persistence;
-using PhotoFrame.Persistence.Csv;
+using PhotoFrame.Persistence.Repositories.EF;
+using PhotoFrame.Persistence.EF;
 using PhotoFrame.Domain.Model;
 
 namespace PhotoFrameApp
@@ -17,7 +18,7 @@ namespace PhotoFrameApp
         [STAThread]
         static void Main()
         {
-            KeyWordRepository keyWordRepository = new KeyWordRepository();
+            KeywordRepository keyWordRepository = new KeywordRepository();
             PhotoRepository photoRepository = new PhotoRepository();
             PhotoFileService photoFileService = new PhotoFileService(); 
 
