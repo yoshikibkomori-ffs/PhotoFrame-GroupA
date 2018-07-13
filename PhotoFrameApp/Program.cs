@@ -18,7 +18,7 @@ namespace PhotoFrameApp
         static void Main()
         {
             KeyWordRepository keyWordRepository = new KeyWordRepository();
-            PhotoRepository photoRepository = new PhotoRepository("",keyWordRepository);
+            PhotoRepository photoRepository = new PhotoRepository();
             PhotoFileService photoFileService = new PhotoFileService(); 
 
             Application.EnableVisualStyles();
