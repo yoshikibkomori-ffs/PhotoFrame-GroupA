@@ -58,11 +58,11 @@ namespace PhotoFrameApp
         /// <param name="e"></param>
         private void Click_SeachDir(object sender, EventArgs e)
         {
-            DialogResult dr = FolderBrowserDialog1.ShowDialog();
-            if (dr == System.Windows.Forms.DialogResult.OK)
-            {
-                TextBox1.Text = FolderBrowserDialog1.SelectedPath;
-            }
+             DialogResult dr = FolderBrowserDialog1.ShowDialog();
+             if (dr == System.Windows.Forms.DialogResult.OK)
+             {
+                 TextBox1.Text = FolderBrowserDialog1.SelectedPath;
+             }
         }
 
         /// <summary>
@@ -107,8 +107,9 @@ namespace PhotoFrameApp
 
             DateTime s_Date = DateTimePicker1.Value;
             DateTime e_Date = DateTimePicker2.Value;
-            this.photos = searchDate.Execute(this.photos, s_Date, e_Date);
-            Set_PhotoList();
+            
+             this.photos = searchDate.Execute(this.photos, s_Date, e_Date);
+             Set_PhotoList();
         }
 
         private void KeywordBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -124,8 +125,10 @@ namespace PhotoFrameApp
         private void Click_SelectKeyword(object sender, EventArgs e)
         {
             string keytext = KeywordBox1.SelectedText;
+           
             this.photos = searchKeyword.Execute(this.photos, keytext);
             Set_PhotoList();
+            
         }
 
         /// <summary>
@@ -135,6 +138,7 @@ namespace PhotoFrameApp
         /// <param name="e"></param>
         private void Click_SelectFavorite(object sender, EventArgs e)
         {
+            
             this.photos = searchFavorite.Execute(this.photos);
             Set_PhotoList();
         }
@@ -152,12 +156,14 @@ namespace PhotoFrameApp
         /// <param name="e"></param>
         private void Click_AddKeyword(object sender, EventArgs e)
         {
+            //ListView1.Enabled = false;
             for (int i = 0; i < ListView1.SelectedItems.Count; i++)
             {
-                int index = ListView1.SelectedItems[i].Index;
-                Photo photo = this.photos.ElementAt(index);
-                Update_PhotoList(index, photo);
+                 int index = ListView1.SelectedItems[i].Index;
+                 Photo photo = this.photos.ElementAt(index);
+                 Update_PhotoList(index, photo);
             }
+            //ListView.Enabled = true;
         }
 
         /// <summary>
@@ -167,12 +173,14 @@ namespace PhotoFrameApp
         /// <param name="e"></param>
         private void Click_AddFavorite(object sender, EventArgs e)
         {
-            for(int i = 0; i < ListView1.SelectedItems.Count; i++)
+            //ListView1.Enabled = false;
+            for (int i = 0; i < ListView1.SelectedItems.Count; i++)
             {
                 int index = ListView1.SelectedItems[i].Index;
                 Photo photo = this.photos.ElementAt(index);
                 Update_PhotoList(index, photo);
             }
+            //ListView.Enabled = true;
         }
 
         /// <summary>
@@ -226,15 +234,15 @@ namespace PhotoFrameApp
             {
                 foreach (var photo in photos)
                 {
-                    string KeyWord, isFavorite, PhotoDateTime;
+                    string Keyword, isFavorite, PhotoDateTime;
 
                     if (photo.Keyword.KeyText != null)
                     {
-                        KeyWord = photo.Keyword.KeyText;
+                        Keyword = photo.Keyword.KeyText;
                     }
                     else
                     {
-                        KeyWord = "";
+                        Keyword = "";
                     }
 
                     if (photo.IsFavorite)
@@ -255,7 +263,7 @@ namespace PhotoFrameApp
                         PhotoDateTime = "";
                     }
 
-                    string[] item = { Path.GetFileName(photo.File.FilePath), KeyWord, isFavorite, PhotoDateTime };
+                    string[] item = { Path.GetFileName(photo.File.FilePath), Keyword, isFavorite, PhotoDateTime };
                     ListView1.Items.Add(new ListViewItem(item));
                 }
 
@@ -270,15 +278,15 @@ namespace PhotoFrameApp
         /// <param name="photo"></param>
         private void Update_PhotoList(int index, Photo photo)
         {
-            string KeyWord, isFavorite, PhotoDateTime;
+            string Keyword, isFavorite, PhotoDateTime;
 
             if (photo.Keyword.KeyText != null)
             {
-                KeyWord = photo.Keyword.KeyText;
+                Keyword = photo.Keyword.KeyText;
             }
             else
             {
-                KeyWord = "";
+                Keyword = "";
             }
 
             if (photo.IsFavorite)
