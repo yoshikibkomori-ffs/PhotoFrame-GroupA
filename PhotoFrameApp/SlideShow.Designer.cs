@@ -29,102 +29,113 @@
         private void InitializeComponent()
         {
             this.PictureBox1 = new System.Windows.Forms.PictureBox();
-            this.NextBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.PrevBox = new System.Windows.Forms.PictureBox();
+            this.NextBox = new System.Windows.Forms.PictureBox();
+            this.StartStopBox = new System.Windows.Forms.PictureBox();
+            this.RandomBox = new System.Windows.Forms.PictureBox();
+            this.RepeatBox = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NextBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PrevBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NextBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.StartStopBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RandomBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepeatBox)).BeginInit();
             this.SuspendLayout();
             // 
             // PictureBox1
             // 
+            this.PictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.PictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
-            this.PictureBox1.Location = new System.Drawing.Point(44, 38);
+            this.PictureBox1.Location = new System.Drawing.Point(68, 22);
             this.PictureBox1.Name = "PictureBox1";
             this.PictureBox1.Size = new System.Drawing.Size(900, 600);
-            this.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.PictureBox1.TabIndex = 0;
             this.PictureBox1.TabStop = false;
-            this.PictureBox1.Click += new System.EventHandler(this.PictureBox1_Click);
             // 
-            // NextBox2
+            // PrevBox
             // 
-            this.NextBox2.Location = new System.Drawing.Point(12, 269);
-            this.NextBox2.Name = "NextBox2";
-            this.NextBox2.Size = new System.Drawing.Size(26, 97);
-            this.NextBox2.TabIndex = 1;
-            this.NextBox2.TabStop = false;
+            this.PrevBox.Location = new System.Drawing.Point(12, 269);
+            this.PrevBox.Name = "PrevBox";
+            this.PrevBox.Size = new System.Drawing.Size(50, 100);
+            this.PrevBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.PrevBox.TabIndex = 1;
+            this.PrevBox.TabStop = false;
             // 
-            // pictureBox3
+            // NextBox
             // 
-            this.pictureBox3.Location = new System.Drawing.Point(950, 269);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(26, 97);
-            this.pictureBox3.TabIndex = 2;
-            this.pictureBox3.TabStop = false;
+            this.NextBox.Location = new System.Drawing.Point(973, 269);
+            this.NextBox.Name = "NextBox";
+            this.NextBox.Size = new System.Drawing.Size(50, 100);
+            this.NextBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.NextBox.TabIndex = 2;
+            this.NextBox.TabStop = false;
             // 
-            // pictureBox4
+            // StartStopBox
             // 
-            this.pictureBox4.Location = new System.Drawing.Point(317, 671);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(105, 46);
-            this.pictureBox4.TabIndex = 3;
-            this.pictureBox4.TabStop = false;
+            this.StartStopBox.Location = new System.Drawing.Point(319, 645);
+            this.StartStopBox.Name = "StartStopBox";
+            this.StartStopBox.Size = new System.Drawing.Size(106, 54);
+            this.StartStopBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.StartStopBox.TabIndex = 3;
+            this.StartStopBox.TabStop = false;
+            this.StartStopBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Start_Stop);
+            this.StartStopBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MouseUp_Start_Stop);
             // 
-            // pictureBox5
+            // RandomBox
             // 
-            this.pictureBox5.Location = new System.Drawing.Point(445, 671);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(105, 46);
-            this.pictureBox5.TabIndex = 4;
-            this.pictureBox5.TabStop = false;
+            this.RandomBox.Location = new System.Drawing.Point(469, 645);
+            this.RandomBox.Name = "RandomBox";
+            this.RandomBox.Size = new System.Drawing.Size(106, 54);
+            this.RandomBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.RandomBox.TabIndex = 4;
+            this.RandomBox.TabStop = false;
+            this.RandomBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Random);
+            this.RandomBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MouseUp_Random);
             // 
-            // pictureBox6
+            // RepeatBox
             // 
-            this.pictureBox6.Location = new System.Drawing.Point(567, 671);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(105, 46);
-            this.pictureBox6.TabIndex = 5;
-            this.pictureBox6.TabStop = false;
+            this.RepeatBox.Location = new System.Drawing.Point(613, 645);
+            this.RepeatBox.Name = "RepeatBox";
+            this.RepeatBox.Size = new System.Drawing.Size(106, 54);
+            this.RepeatBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.RepeatBox.TabIndex = 5;
+            this.RepeatBox.TabStop = false;
+            this.RepeatBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Repeat);
+            this.RepeatBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MouseUp_Repeat);
             // 
             // SlideShow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(984, 762);
-            this.Controls.Add(this.pictureBox6);
-            this.Controls.Add(this.pictureBox5);
-            this.Controls.Add(this.pictureBox4);
-            this.Controls.Add(this.pictureBox3);
-            this.Controls.Add(this.NextBox2);
+            this.ClientSize = new System.Drawing.Size(1034, 712);
+            this.Controls.Add(this.RepeatBox);
+            this.Controls.Add(this.RandomBox);
+            this.Controls.Add(this.StartStopBox);
+            this.Controls.Add(this.NextBox);
+            this.Controls.Add(this.PrevBox);
             this.Controls.Add(this.PictureBox1);
             this.Name = "SlideShow";
             this.Text = "SlideShow";
-            this.Load += new System.EventHandler(this.SlideShow_Load);
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NextBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PrevBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NextBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.StartStopBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RandomBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepeatBox)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
         private System.Windows.Forms.PictureBox PictureBox1;
-        private System.Windows.Forms.PictureBox NextBox2;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.PictureBox pictureBox6;
+        private System.Windows.Forms.PictureBox PrevBox;
+        private System.Windows.Forms.PictureBox NextBox;
+        private System.Windows.Forms.PictureBox StartStopBox;
+        private System.Windows.Forms.PictureBox RandomBox;
+        private System.Windows.Forms.PictureBox RepeatBox;
     }
 }
 
