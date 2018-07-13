@@ -4,28 +4,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PhotoFrame.Domain.Model;
+using PhotoFrame.Persistence.Csv;
 
 namespace PhotoFrame.Domain.UseCase
 {
-    public class CreatePhotoList
+    public class SearchDirectory
     {
         private readonly PhotoRepository photoRepository;
-        private readonly PhotoFileService photoFileService;
+        private readonly IPhotoFileService photoFileService;
 
-        public CreatePhotoList(PhotoRepository in_photoRepository, PhotoFileService in_photoFileService)
+        public CreatePhotoList(PhotoRepository photoRepository, IPhotoFileService photoFileService)
         {
-            this.photoRepository = in_photoRepository;
-            this.photoFileService = in_photoFileService;
+            this.photoRepository = photoRepository;
+            this.photoFileService = photoFileService;
         }
 
         /// <summary>
         /// 指定したディレクトリ直下のフォトのリストを返す
         /// </summary>
-        /// <param name="dirpath"></param>
+        /// <param name="directoryName"></param>
         /// <returns></returns>
-        public List<Photo> Execute(string dirpath)
+        public IEnumerable<Photo> Execute(string directoryName)
         {
-            IEnumerable<Domain.Model.File> files = photoFileService.FindAllPhotoFilesFromDirectory(dirpath);
+            IEnumerable<Domain.Model.File> files = photoFileService.FindAllPhotoFilesFromDirectory(directoryName);
             List<Photo> photosInDirectory = new List<Photo>();
 
             foreach(File file in files)

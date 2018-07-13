@@ -29,14 +29,14 @@ namespace PhotoFrame.Domain.Model
         /// <summary>
         /// 所属アルバムID
         /// </summary>
-        public string KeywordId { get; set; }
+        //public string KeywordId { get; set; }
 
-        public Photo(string photoId, File file, bool isFavorite = false, string keywordId = null, Keyword keyword = null)
+        public Photo(string photoId, File file, bool isFavorite = false,/* string keywordId = null, */Keyword keyword = null)
         {
             Id = photoId;
             File = file;
             IsFavorite = isFavorite;
-            KeywordId = keywordId;
+            //KeywordId = keywordId;
             Keyword = keyword;
         }
 
@@ -54,7 +54,7 @@ namespace PhotoFrame.Domain.Model
         public void IsAssignedTo(Keyword keyword)
         {
             Keyword = keyword;
-            KeywordId = keyword.Id;
+            //KeywordId = keyword.Id;
         }
 
         public void ToggleFavorite()

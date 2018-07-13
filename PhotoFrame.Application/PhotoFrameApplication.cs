@@ -11,7 +11,6 @@ namespace PhotoFrame.Application
     /// <summary>
     /// PhotoFrameのUIの指示にしたがってドメインのユースケースを起動する
     /// </summary>
-    // TODO: 仮実装
     public class PhotoFrameApplication
     {
         private readonly CreatePhotoList createPhotoList;　//変更済み
@@ -24,11 +23,11 @@ namespace PhotoFrame.Application
         private readonly SortDate sortDate; //変更済み
         private readonly SortSlideList sortSlideList; //変更済み
 
-        public PhotoFrameApplication(IAlbumRepository albumRepository, IPhotoRepository photoRepository, IPhotoFileService photoFileService)
+        public PhotoFrameApplication(KeywordRepository albumRepository, PhotoRepository photoRepository, PhotoFileService photoFileService)
         {
             this.createPhotoList = new CreatePhotoList(photoRepository, photoFileService); //済み
-            this.addKeyword = new AddKeyword(albumRepository); //済み
-            this.changeKeyword = new ChangeKeyword(albumRepository, photoRepository); //済み
+            this.addKeyword = new AddKeyword(keywordRepository); //済み
+            this.changeKeyword = new ChangeKeyword(keywordRepository, photoRepository); //済み
             this.changeFavorite = new ChangeFavorite(photoRepository); //済み
             this.searchKeyword = new SearchKeyword(); //済み
             this.searchFavorite = new SearchFavorite(); //済み
@@ -55,7 +54,6 @@ namespace PhotoFrame.Application
         public async Task<Photo> ChangeKeywordAsync(Photo photo, string keytext)
         {
             Photo ret_photo = await changeKeyword.ExecuteAsync(photo, keytext); //済み
-
             return ret_photo;
         }
 
@@ -94,12 +92,5 @@ namespace PhotoFrame.Application
         {
             return sortSlideList.Execute(photos); //済み
         }
-
-
-
-
-
-
-
     }
 }
