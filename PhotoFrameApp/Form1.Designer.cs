@@ -84,7 +84,7 @@
             this.Display.TabIndex = 2;
             this.Display.Text = "Display";
             this.Display.UseVisualStyleBackColor = true;
-            this.Display.Click += new System.EventHandler(this.Display_Click);
+            this.Display.Click += new System.EventHandler(this.Click_Display);
             // 
             // DateTimePicker1
             // 
@@ -97,7 +97,7 @@
             this.DateTimePicker1.Size = new System.Drawing.Size(240, 26);
             this.DateTimePicker1.TabIndex = 3;
             this.DateTimePicker1.Value = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
-            this.DateTimePicker1.ValueChanged += new System.EventHandler(this.DateTimePicker1_ValueChanged);
+            this.DateTimePicker1.ValueChanged += new System.EventHandler(this.Click_StartDateTimePicker);
             // 
             // Label1
             // 
@@ -119,7 +119,7 @@
             this.DateTimePicker2.Size = new System.Drawing.Size(240, 26);
             this.DateTimePicker2.TabIndex = 5;
             this.DateTimePicker2.Value = new System.DateTime(2002, 7, 12, 0, 0, 0, 0);
-            this.DateTimePicker2.ValueChanged += new System.EventHandler(this.DateTimePicker2_ValueChanged);
+            this.DateTimePicker2.ValueChanged += new System.EventHandler(this.Click_EndDateTimePicker);
             // 
             // SelectDate
             // 
@@ -130,7 +130,7 @@
             this.SelectDate.TabIndex = 6;
             this.SelectDate.Text = "Select Date";
             this.SelectDate.UseVisualStyleBackColor = true;
-            this.SelectDate.Click += new System.EventHandler(this.SelectDate_Click);
+            this.SelectDate.Click += new System.EventHandler(this.Click_SelectDate);
             // 
             // KeywordBox1
             // 
@@ -143,6 +143,7 @@
             this.KeywordBox1.Name = "KeywordBox1";
             this.KeywordBox1.Size = new System.Drawing.Size(240, 27);
             this.KeywordBox1.TabIndex = 7;
+            this.KeywordBox1.SelectedIndexChanged += new System.EventHandler(this.KeywordBox1_SelectedIndexChanged);
             // 
             // SelectKeyword
             // 
@@ -153,6 +154,7 @@
             this.SelectKeyword.TabIndex = 8;
             this.SelectKeyword.Text = "Select Key";
             this.SelectKeyword.UseVisualStyleBackColor = true;
+            this.SelectKeyword.Click += new System.EventHandler(this.Click_SelectKeyword);
             // 
             // SelectFavorite
             // 
@@ -163,6 +165,7 @@
             this.SelectFavorite.TabIndex = 9;
             this.SelectFavorite.Text = "Select Fav";
             this.SelectFavorite.UseVisualStyleBackColor = true;
+            this.SelectFavorite.Click += new System.EventHandler(this.Click_SelectFavorite);
             // 
             // ListView1
             // 
@@ -181,6 +184,8 @@
             this.ListView1.TabIndex = 10;
             this.ListView1.UseCompatibleStateImageBehavior = false;
             this.ListView1.View = System.Windows.Forms.View.Details;
+            this.ListView1.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.Click_DateSort);
+            this.ListView1.SelectedIndexChanged += new System.EventHandler(this.Click_ShowPreview);
             // 
             // columnHeader1
             // 
@@ -221,6 +226,7 @@
             this.KeywordBox2.Name = "KeywordBox2";
             this.KeywordBox2.Size = new System.Drawing.Size(240, 27);
             this.KeywordBox2.TabIndex = 11;
+            this.KeywordBox2.SelectedIndexChanged += new System.EventHandler(this.KeywordBox2_SelectedIndexChanged);
             // 
             // AddKeyword
             // 
@@ -231,6 +237,7 @@
             this.AddKeyword.TabIndex = 12;
             this.AddKeyword.Text = "Add Key";
             this.AddKeyword.UseVisualStyleBackColor = true;
+            this.AddKeyword.Click += new System.EventHandler(this.Click_AddKeyword);
             // 
             // ToggleFavorite
             // 
@@ -241,6 +248,7 @@
             this.ToggleFavorite.TabIndex = 13;
             this.ToggleFavorite.Text = "Toggle Fav";
             this.ToggleFavorite.UseVisualStyleBackColor = true;
+            this.ToggleFavorite.Click += new System.EventHandler(this.Click_AddFavorite);
             // 
             // SlideShow
             // 
@@ -251,6 +259,7 @@
             this.SlideShow.TabIndex = 15;
             this.SlideShow.Text = "Slide Show";
             this.SlideShow.UseVisualStyleBackColor = true;
+            this.SlideShow.Click += new System.EventHandler(this.Click_SlideShow);
             // 
             // Form1
             // 
