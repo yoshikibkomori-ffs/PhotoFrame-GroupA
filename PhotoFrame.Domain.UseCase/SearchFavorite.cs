@@ -16,6 +16,10 @@ namespace PhotoFrame.Domain.UseCase
         /// <returns></returns>
         public List<Photo> Execute(List<Photo> photos)
         {
+            if (photos == null)
+            {
+                throw new ArgumentNullException("空のフォトリストが入力されています");
+            }
             List<Photo> photolist = new List<Photo>();
             photolist = (from p in photos where p.IsFavorite == true select p).ToList();
             return photolist;

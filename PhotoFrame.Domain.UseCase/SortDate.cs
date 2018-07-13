@@ -19,15 +19,21 @@ namespace PhotoFrame.Domain.UseCase
         /// <returns></returns>
         public List<Photo> Execute(List<Photo> photos, Boolean order)
         {
+
+            if (photos == null)
+            {
+                throw new ArgumentNullException("空のフォトリストが入力されています");
+            }
+
             List<Photo> photolist = new List<Photo>();
 
             if (order)
             {
-                photolist = photos.OrderBy(x => x.File.Date).ToList();
+                photolist = photos.OrderBy(x => x.File.DateTime).ToList();
             }
             else
             {
-                photolist = photos.OrderByDescending(x => x.File.Date).ToList();
+                photolist = photos.OrderByDescending(x => x.File.DateTime).ToList();
             }
 
             return photolist;

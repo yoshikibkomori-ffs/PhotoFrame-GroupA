@@ -55,13 +55,13 @@ namespace PhotoFrame.Domain.Model
 
         public override int GetHashCode() => Id.GetHashCode();
 
-        public static bool operator ==(Keyword album1, Keyword album2)
+        public static bool operator ==(Keyword keyword1, Keyword keyword2)
         {
-            if (ReferenceEquals(album1, album2)) return true;
-            if ((object)album1 == null || (object)album2 == null) return false;
-            return album1.Equals(album2);
+            if (ReferenceEquals(keyword1, keyword2)) return true;
+            if ((object)keyword1 == null || (object)keyword2 == null) return false;
+            return keyword1.Equals(keyword2);
         }
 
-        public static bool operator !=(Keyword album1, Keyword album2) => !(album1 == album2);
+        public static bool operator !=(Keyword keyword1, Keyword keyword2) => !(keyword1 == keyword2);
     }
 }

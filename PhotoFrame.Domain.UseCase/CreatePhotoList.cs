@@ -28,7 +28,12 @@ namespace PhotoFrame.Domain.UseCase
             IEnumerable<Domain.Model.File> files = photoFileService.FindAllPhotoFilesFromDirectory(dirpath);
             List<Photo> photosInDirectory = new List<Photo>();
 
-            foreach(File file in files)
+            if (dirpath.Length == 0 || dirpath == null)
+            {
+                throw new ArgumentNullException("ディレクトリパスが入力されていません");
+            }
+
+            foreach (File file in files)
             {
                 Func<IQueryable<Photo>, Photo> query = allPhotos =>
                 {
@@ -54,7 +59,10 @@ namespace PhotoFrame.Domain.UseCase
                     photosInDirectory.Add(Photo.CreateFromFile(file));
                 }
             }
-
+            if(photosInDirectory == null)
+            {
+                return null;
+            }
             return photosInDirectory;
         }
 

@@ -26,6 +26,11 @@ namespace PhotoFrame.Domain.UseCase
         /// <returns>終了状態を数値で返す</returns>
         public int Execute(string keytext)
         {
+
+            if(keytext.Length > 100)
+            {
+                throw new ArgumentOutOfRangeException("入力されたkeywordの文字数が制限を超えています");
+            }
             IEnumerable<Keyword> result = keywordRepository.Find((IQueryable<Keyword> keywords) => (from p in keywords where p.KeyText == keytext select p));
 
             if(keytext != "")

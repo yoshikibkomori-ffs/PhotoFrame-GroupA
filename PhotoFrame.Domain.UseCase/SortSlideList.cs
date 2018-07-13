@@ -16,6 +16,12 @@ namespace PhotoFrame.Domain.UseCase
         /// <returns></returns>
         public List<Photo> Execute(List<Photo> photos)
         {
+
+            if (photos == null)
+            {
+                throw new ArgumentNullException("空のフォトリストが入力されています");
+            }
+
             List<Photo> photolist = new List<Photo>();
 
             //ランダムに並び替え（生成されたGUIDの大きさで並び替える）
