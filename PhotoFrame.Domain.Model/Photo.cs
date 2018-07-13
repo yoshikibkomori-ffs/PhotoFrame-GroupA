@@ -31,13 +31,13 @@ namespace PhotoFrame.Domain.Model
         /// </summary>
         //public string KeywordId { get; set; }
 
-        public Photo(string photoId, File file, bool isFavorite = false,/* string keywordId = null, */Keyword keyword = null)
+        public Photo(string photoId, File file, bool isFavorite = false, Keyword keyword = null/*, string keywordId = null*/)
         {
             Id = photoId;
             File = file;
             IsFavorite = isFavorite;
-            //KeywordId = keywordId;
             Keyword = keyword;
+            //KeywordId = keywordId;
         }
 
         public static Photo CreateFromFile(File file)

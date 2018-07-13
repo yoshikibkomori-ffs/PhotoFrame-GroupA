@@ -24,6 +24,10 @@ namespace PhotoFrame.Domain.UseCase
         /// <returns></returns>
         public Photo Execute(Photo photo)
         {
+            if (photo == null)
+            {
+                throw new ArgumentNullException("写真が選択されていません");
+            }
             photo.ToggleFavorite();
 
             photoRepository.Store(photo);
@@ -38,6 +42,10 @@ namespace PhotoFrame.Domain.UseCase
         /// <returns></returns>
         public async Task<Photo> ExecuteAsync(Photo photo)
         {
+            if (photo == null)
+            {
+                throw new ArgumentNullException("写真が選択されていません");
+            }
             photo.ToggleFavorite();
 
             await Task.Run(() =>

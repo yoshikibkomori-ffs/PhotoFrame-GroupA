@@ -27,6 +27,14 @@ namespace PhotoFrame.Domain.UseCase
         /// <returns></returns>
         public Photo Execute(Photo photo, string keytext)
         {
+            if (keytext.Length > 100)
+            {
+                throw new ArgumentOutOfRangeException("入力されたkeywordの文字数が制限を超えています");
+            }
+            if (photo == null)
+            {
+                throw new ArgumentNullException("写真が選択されていません");
+            }
             Func<IQueryable<Keyword>, Keyword> query = allKeywords =>
             {
                 foreach (Keyword keyword in allKeywords)
@@ -45,11 +53,15 @@ namespace PhotoFrame.Domain.UseCase
             if(newKeyword != null)
             {
                 photo.IsAssignedTo(newKeyword);
+                photoRepository.Store(photo);
+            }
+            else
+            {
+                return null;
             }
 
-            photoRepository.Store(photo);
-
             return photo;
+
         }
 
         /// <summary>
@@ -62,6 +74,14 @@ namespace PhotoFrame.Domain.UseCase
         /// <returns></returns>
         public async Task<Photo> ExecuteAsync(Photo photo, string keytext)
         {
+            if (keytext.Length > 100)
+            {
+                throw new ArgumentOutOfRangeException("入力されたkeywordの文字数が制限を超えています");
+            }
+            if (photo == null)
+            {
+                throw new ArgumentNullException("写真が選択されていません");
+            }
             Func<IQueryable<Keyword>, Keyword> query = allKeywords =>
             {
                 foreach (Keyword keyword in allKeywords)
@@ -80,14 +100,18 @@ namespace PhotoFrame.Domain.UseCase
             if (newKeyword != null)
             {
                 photo.IsAssignedTo(newKeyword);
+                await Task.Run(() =>
+                {
+                    photoRepository.Store(photo);
+                });
+            }
+            else
+            {
+                return null;
             }
 
-            await Task.Run(() =>
-            {
-                photoRepository.Store(photo);
-            });
-
             return photo;
+
         }
     }
 }

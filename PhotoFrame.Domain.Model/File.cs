@@ -28,7 +28,7 @@ namespace PhotoFrame.Domain.Model
         /// <summary>
         /// 撮影日時
         /// </summary>
-        public DateTime Date { get; private set; }
+        public DateTime? DateTime { get; private set; }
 
         public File(string filePath)
         {
@@ -38,9 +38,9 @@ namespace PhotoFrame.Domain.Model
 
         private File() { }
 
-        public void AddDateTime(DateTime date)
+        public void AddDateTime(DateTime? datetime)
         {
-            this.Date = date;
+            this.DateTime = datetime;
         }
 
         private bool HasPhotoFileExtension(string filePath)
