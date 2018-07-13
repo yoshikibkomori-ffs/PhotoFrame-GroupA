@@ -20,10 +20,10 @@ namespace PhotoFrame.Persistence.Repositories.EF
         {
             using (var context = new PhotoFrameEntities())
             {
-                IQueryable<Table_Keyword> 
+                IQueryable<Table_Keyword>
                     query = from keyword in context.Table_Keyword
-                    where keyword.Id == entity.Id
-                    select keyword;
+                            where keyword.Id == entity.Id
+                            select keyword;
                 foreach (var table_Keyword in query)
                 {
                     context.Table_Keyword.Remove(table_Keyword);
@@ -56,11 +56,11 @@ namespace PhotoFrame.Persistence.Repositories.EF
             {
                 return (from keyword in x where keyword.KeyText == keytext select keyword);
             });
-            if(keywords == null)
+            if (keywords == null)
             {
                 return Keyword.Create(keytext);
             }
-            return keywords.First();           
+            return keywords.First();
         }
 
         private Table_Keyword Convert_Key_to_MKey(Keyword keyword)

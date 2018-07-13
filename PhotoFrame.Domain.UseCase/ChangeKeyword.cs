@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PhotoFrame.Domain.Model;
+using PhotoFrame.Persistence;
+using PhotoFrame.Persistence.Repositories.EF;
 
 namespace PhotoFrame.Domain.UseCase
 {
@@ -27,34 +29,40 @@ namespace PhotoFrame.Domain.UseCase
         /// <returns></returns>
         public Photo Execute(Photo photo, string keytext)
         {
+            //入力されたキーワードの文字数が100文字を超えていた場合
             if (keytext.Length > 100)
             {
                 throw new ArgumentOutOfRangeException("入力されたkeywordの文字数が制限を超えています");
             }
+            //Photoインスタンスが入力されていない場合
             if (photo == null)
             {
                 throw new ArgumentNullException("写真が選択されていません");
             }
-            Func<IQueryable<Keyword>, Keyword> query = allKeywords =>
+            //クエリ
+            Func<IQueryable<Keyword>, IQueryable<Keyword>> query = allKeywords =>
             {
+                List<Keyword> keys = new List<Keyword>();
                 foreach (Keyword keyword in allKeywords)
                 {
                     if (keyword.KeyText == keytext)
                     {
-                        return keyword;
+                        keys.Add(keyword);
                     }
                 }
-
-                return null;
+                return keys.AsQueryable();
             };
 
-            Keyword newKeyword = keywordRepository.Find(query);
+            //入力されたkeywordと等しいKeywordインスタンスを取得
+            Keyword newKeyword = keywordRepository.Find(query).First();
 
-            if(newKeyword != null)
+            //Keywordインスタンスを取得できた場合
+            if (newKeyword != null)
             {
                 photo.IsAssignedTo(newKeyword);
                 photoRepository.Store(photo);
             }
+            //出来なかった場合
             else
             {
                 return null;
@@ -74,29 +82,34 @@ namespace PhotoFrame.Domain.UseCase
         /// <returns></returns>
         public async Task<Photo> ExecuteAsync(Photo photo, string keytext)
         {
+            //入力されたキーワードの文字数が100文字を超えていた場合
             if (keytext.Length > 100)
             {
                 throw new ArgumentOutOfRangeException("入力されたkeywordの文字数が制限を超えています");
             }
+            //Photoインスタンスが入力されていない場合
             if (photo == null)
             {
                 throw new ArgumentNullException("写真が選択されていません");
             }
-            Func<IQueryable<Keyword>, Keyword> query = allKeywords =>
+            //クエリ
+            Func<IQueryable<Keyword>, IQueryable<Keyword>> query = allKeywords =>
             {
+                List<Keyword> keys = new List<Keyword>();
                 foreach (Keyword keyword in allKeywords)
                 {
                     if (keyword.KeyText == keytext)
                     {
-                        return keyword;
+                        keys.Add(keyword);
                     }
                 }
-
-                return null;
+                return keys.AsQueryable();
             };
 
-            Keyword newKeyword = keywordRepository.Find(query);
+            //入力されたkeywordと等しいKeywordインスタンスを取得
+            Keyword newKeyword = keywordRepository.Find(query).First();
 
+            //Keywordインスタンスを取得できた場合
             if (newKeyword != null)
             {
                 photo.IsAssignedTo(newKeyword);
@@ -105,6 +118,7 @@ namespace PhotoFrame.Domain.UseCase
                     photoRepository.Store(photo);
                 });
             }
+            //出来なかった場合
             else
             {
                 return null;

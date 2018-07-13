@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PhotoFrame.Persistence.Repositories.EF;
 
 namespace PhotoFrame.Domain.UseCase
 {
@@ -16,7 +17,7 @@ namespace PhotoFrame.Domain.UseCase
 
         public AddKeyword(KeywordRepository in_keywordRepository)
         {
-            this.keyowrdRepository = in_keywordRepository;
+            this.keywordRepository = in_keywordRepository;
         }
 
         /// <summary>
@@ -26,11 +27,18 @@ namespace PhotoFrame.Domain.UseCase
         /// <returns>終了状態を数値で返す</returns>
         public int Execute(string keytext)
         {
-
+            //登録するキーワードの文字数が100文字を超えていた場合
             if(keytext.Length > 100)
             {
                 throw new ArgumentOutOfRangeException("入力されたkeywordの文字数が制限を超えています");
             }
+            //キーワードが入力されていない場合（初期化無しを想定）
+            if(keytext == null)
+            {
+                throw new ArgumentNullException("keywordが入力されていません");
+            }
+
+            //DBに既にキーワードが格納されているか
             IEnumerable<Keyword> result = keywordRepository.Find((IQueryable<Keyword> keywords) => (from p in keywords where p.KeyText == keytext select p));
 
             if(keytext != "")
