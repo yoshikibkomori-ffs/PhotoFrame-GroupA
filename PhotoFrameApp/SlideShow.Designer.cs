@@ -28,12 +28,14 @@
         // </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.PictureBox1 = new System.Windows.Forms.PictureBox();
             this.PrevBox = new System.Windows.Forms.PictureBox();
             this.NextBox = new System.Windows.Forms.PictureBox();
             this.StartStopBox = new System.Windows.Forms.PictureBox();
             this.RandomBox = new System.Windows.Forms.PictureBox();
             this.RepeatBox = new System.Windows.Forms.PictureBox();
+            this.Timer_ChangeImg = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PrevBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NextBox)).BeginInit();
@@ -56,12 +58,14 @@
             // 
             // PrevBox
             // 
-            this.PrevBox.Location = new System.Drawing.Point(12, 269);
+            this.PrevBox.Location = new System.Drawing.Point(14, 269);
             this.PrevBox.Name = "PrevBox";
             this.PrevBox.Size = new System.Drawing.Size(50, 100);
             this.PrevBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.PrevBox.TabIndex = 1;
             this.PrevBox.TabStop = false;
+            this.PrevBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Previous);
+            this.PrevBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MouseUp_Previous);
             // 
             // NextBox
             // 
@@ -71,6 +75,8 @@
             this.NextBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.NextBox.TabIndex = 2;
             this.NextBox.TabStop = false;
+            this.NextBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Next);
+            this.NextBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MouseUp_Next);
             // 
             // StartStopBox
             // 
@@ -105,6 +111,11 @@
             this.RepeatBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown_Repeat);
             this.RepeatBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MouseUp_Repeat);
             // 
+            // Timer_ChangeImg
+            // 
+            this.Timer_ChangeImg.Interval = 300;
+            this.Timer_ChangeImg.Tick += new System.EventHandler(this.Timer_ChangeImg_Tick);
+            // 
             // SlideShow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -119,6 +130,7 @@
             this.Controls.Add(this.PictureBox1);
             this.Name = "SlideShow";
             this.Text = "SlideShow";
+            this.Load += new System.EventHandler(this.SlideShow_Load);
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PrevBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NextBox)).EndInit();
@@ -136,6 +148,7 @@
         private System.Windows.Forms.PictureBox StartStopBox;
         private System.Windows.Forms.PictureBox RandomBox;
         private System.Windows.Forms.PictureBox RepeatBox;
+        private System.Windows.Forms.Timer Timer_ChangeImg;
     }
 }
 
