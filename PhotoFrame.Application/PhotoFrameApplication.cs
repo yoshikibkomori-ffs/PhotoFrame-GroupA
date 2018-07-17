@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PhotoFrame.Persistence.Repositories.EF;
-
+using PhotoFrame.Persistence;
 
 namespace PhotoFrame.Application
 {
@@ -25,7 +25,7 @@ namespace PhotoFrame.Application
         private readonly SortDate sortDate; //変更済み
         private readonly SortSlideList sortSlideList; //変更済み
 
-        public PhotoFrameApplication(KeywordRepository keywordRepository, IPhotoRepository photoRepository, IPhotoFileService photoFileService)
+        public PhotoFrameApplication(KeywordRepository albumRepository, PhotoRepository photoRepository, PhotoFileService photoFileService)
         {
             this.createPhotoList = new CreatePhotoList(photoRepository, photoFileService); //済み
             this.addKeyword = new AddKeyword(keywordRepository); //済み
@@ -72,7 +72,7 @@ namespace PhotoFrame.Application
 
         public List<Photo> SearchKeyword(List<Photo> photos, string keytext)
         {
-            return searchKeyword.Execute(photos,keytext); //済み
+            return searchKeyword.Execute(photos, keytext); //済み
         }
 
         public List<Photo> SearchFavorite(List<Photo> photos)
