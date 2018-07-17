@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PhotoFrame.Persistence.EF
+namespace PhotoFrame.Persistence.Repositories.EF
 {
     //PhotoRepository(DB)
-    class PhotoRepository
+    public class PhotoRepository
     {
         //コンストラクタ
         public PhotoRepository()

@@ -19,26 +19,21 @@ namespace PhotoFrameApp
 {
     public partial class SlideShow : Form
     {
-        RepositoryFactory repositoryFactory;
-        ServiceFactory serviceFactory;
-        IPhotoRepository photoRepository;
-        KeywordRepository keywordRepository;
-        IPhotoFileService photoFileService;
-        PhotoFrameApplication application;
-        
         int photoIndex = 0;
         //スライドショー・ボタンの状態を保持
         Boolean startstop, random, repeat = false;
         List<Photo> originalphotos,randomphotos,photos;
+        private KeywordRepository sskeywordRepository;
+        private PhotoRepository ssphotoRepository;
+        private PhotoFileService ssphotoFileService;
+        private PhotoFrameApplication application;
 
-        public SlideShow(List<Photo> photolist)
+        public SlideShow(List<Photo> photolist,KeywordRepository keywordRepository, PhotoRepository photoRepository, PhotoFileService photoFileService)
         {
             this.originalphotos = photolist;  //メイン画面から配列の受け取り
-            this.repositoryFactory = new RepositoryFactory(PhotoFrame.Persistence.Type.EF);
-            this.serviceFactory = new ServiceFactory();
-            this.photoRepository = repositoryFactory.PhotoRepository;
-            this.keywordRepository = new KeywordRepository();
-            this.photoFileService = serviceFactory.PhotoFileService;
+            this.sskeywordRepository = new KeywordRepository();
+            this.ssphotoRepository = new PhotoRepository();
+            this.ssphotoFileService = new PhotoFileService();
             this.application = new PhotoFrameApplication(keywordRepository, photoRepository, photoFileService);
         }
 
