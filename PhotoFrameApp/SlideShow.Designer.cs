@@ -46,10 +46,11 @@
             // 
             // PictureBox1
             // 
-            this.PictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.PictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
-            this.PictureBox1.Location = new System.Drawing.Point(68, 22);
+            this.PictureBox1.Location = new System.Drawing.Point(67, 22);
             this.PictureBox1.Name = "PictureBox1";
             this.PictureBox1.Size = new System.Drawing.Size(900, 600);
             this.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -58,7 +59,8 @@
             // 
             // PrevBox
             // 
-            this.PrevBox.Location = new System.Drawing.Point(14, 269);
+            this.PrevBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.PrevBox.Location = new System.Drawing.Point(12, 269);
             this.PrevBox.Name = "PrevBox";
             this.PrevBox.Size = new System.Drawing.Size(50, 100);
             this.PrevBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -69,6 +71,7 @@
             // 
             // NextBox
             // 
+            this.NextBox.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.NextBox.Location = new System.Drawing.Point(973, 269);
             this.NextBox.Name = "NextBox";
             this.NextBox.Size = new System.Drawing.Size(50, 100);
@@ -80,6 +83,7 @@
             // 
             // StartStopBox
             // 
+            this.StartStopBox.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.StartStopBox.Location = new System.Drawing.Point(319, 645);
             this.StartStopBox.Name = "StartStopBox";
             this.StartStopBox.Size = new System.Drawing.Size(106, 54);
@@ -91,6 +95,7 @@
             // 
             // RandomBox
             // 
+            this.RandomBox.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.RandomBox.Location = new System.Drawing.Point(469, 645);
             this.RandomBox.Name = "RandomBox";
             this.RandomBox.Size = new System.Drawing.Size(106, 54);
@@ -102,6 +107,7 @@
             // 
             // RepeatBox
             // 
+            this.RepeatBox.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.RepeatBox.Location = new System.Drawing.Point(613, 645);
             this.RepeatBox.Name = "RepeatBox";
             this.RepeatBox.Size = new System.Drawing.Size(106, 54);
@@ -113,7 +119,7 @@
             // 
             // Timer_ChangeImg
             // 
-            this.Timer_ChangeImg.Interval = 300;
+            this.Timer_ChangeImg.Interval = 3000;
             this.Timer_ChangeImg.Tick += new System.EventHandler(this.Timer_ChangeImg_Tick);
             // 
             // SlideShow
@@ -128,6 +134,7 @@
             this.Controls.Add(this.NextBox);
             this.Controls.Add(this.PrevBox);
             this.Controls.Add(this.PictureBox1);
+            this.MinimumSize = new System.Drawing.Size(450, 300);
             this.Name = "SlideShow";
             this.Text = "SlideShow";
             this.Load += new System.EventHandler(this.SlideShow_Load);
@@ -151,44 +158,3 @@
         private System.Windows.Forms.Timer Timer_ChangeImg;
     }
 }
-
-
-
-//private void InitializeComponent()
-//{
-//    this.components = new System.ComponentModel.Container();
-//    this.timer_ChangePhoto = new System.Windows.Forms.Timer(this.components);
-//    this.PictureBox1 = new System.Windows.Forms.PictureBox();
-//    ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).BeginInit();
-//    this.SuspendLayout();
-//    // 
-//    // timer_ChangePhoto
-//    // 
-//    this.timer_ChangePhoto.Tick += new System.EventHandler(this.timer_ChangePhoto_Tick);
-//    // 
-//    // PictureBox1
-//    // 
-//    this.PictureBox1.Location = new System.Drawing.Point(44, 38);
-//    this.PictureBox1.Name = "PictureBox1";
-//    this.PictureBox1.Size = new System.Drawing.Size(900, 600);
-//    this.PictureBox1.TabIndex = 0;
-//    this.PictureBox1.TabStop = false;
-//    this.PictureBox1.Click += new System.EventHandler(this.PictureBox1_Click);
-//    // 
-//    // SlideShow
-//    // 
-//    this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
-//    this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-//    this.ClientSize = new System.Drawing.Size(984, 762);
-//    this.Controls.Add(this.PictureBox1);
-//    this.Name = "SlideShow";
-//    this.Text = "SlideShow";
-//    this.Load += new System.EventHandler(this.SlideShow_Load);
-//    ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).EndInit();
-//    this.ResumeLayout(false);
-
-//}
-
-//#endregion
-//private System.Windows.Forms.Timer timer_ChangePhoto;
-//private System.Windows.Forms.PictureBox PictureBox1;

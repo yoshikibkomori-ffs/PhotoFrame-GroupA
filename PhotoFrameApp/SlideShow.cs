@@ -39,12 +39,13 @@ namespace PhotoFrameApp
 
         private void SlideShow_Load(object sender, EventArgs e)  //スライドショー画面の初期表示
         {
-            DefaultButton();
             photos = originalphotos;
+            DefaultButton();
             PictureBox1.ImageLocation = photos.ElementAt(photoIndex).File.FilePath;
         }
-
-        //Mouseイベント
+        
+        //
+        //Mouseイベント(Main)
         //
         //Start_Stop切り替え
         #region 
@@ -52,22 +53,22 @@ namespace PhotoFrameApp
         {
             if (startstop == false)  //停止中
             {
-                StartMD();
+                MouseDownStartButton();
             }
             else  //再生中
             {
-                StopMD();
+                MouseDownStopButton();
             }
         }
         private void MouseUp_Start_Stop(object sender, MouseEventArgs e)
         {
             if (startstop == false)  //停止中
             {
-                StartSS();
+                SlideShowStart();
             }
             else  //再生中
             {
-                StopSS();
+                SlideShowStop();
             }
         }
         #endregion
@@ -76,10 +77,10 @@ namespace PhotoFrameApp
         #region
         private void MouseDown_Random(object sender, MouseEventArgs e)
         {
-            RandomMD();
+            MouseDownRandomButton();
             if (startstop == true)  //再生中はスライドショーを停止
             {
-                StopSS();
+                SlideShowStop();
             }
         }
         private void MouseUp_Random(object sender, MouseEventArgs e)
@@ -99,18 +100,19 @@ namespace PhotoFrameApp
         #region
         private void MouseDown_Repeat(object sender, MouseEventArgs e)
         {
-            RepeatMD();
+            MouseDownRepeatButton();
         }
         private void MouseUp_Repeat(object sender, MouseEventArgs e)
         {
             if (repeat == false)
             {
-                RepeatA();
+                RepeatButtonActivate();
             }
             else
             {
-                RepeatNA();
+                RepeatButtonInactivate();
             }
+            ChangeArrowButtonState();
         }
         #endregion
         //
@@ -120,22 +122,12 @@ namespace PhotoFrameApp
         {
             if (startstop == true)  //再生中はスライドショーを停止
             {
-                StopSS();
+                SlideShowStop();
             }
         }
         private void MouseUp_Next(object sender, MouseEventArgs e)
         {
-            photoIndex++;
-            PictureBox1.ImageLocation = photos.ElementAt(photoIndex).File.FilePath;
-            PrevA();
-            if (photoIndex == photos.Count())
-            {
-                NextNA();
-            }
-            else
-            {
-                NextA();
-            }
+            NextImg();
         }
         #endregion
         //
@@ -145,63 +137,90 @@ namespace PhotoFrameApp
         {
             if (startstop == true)  //再生中はスライドショーを停止
             {
-                StopSS();
+                SlideShowStop();
             }
         }
         private void MouseUp_Previous(object sender, MouseEventArgs e)
         {
-            photoIndex--;
-            PictureBox1.ImageLocation = photos.ElementAt(photoIndex).File.FilePath;
-            if(photoIndex == 0)
-            {
-                PrevNA();
-            }
-            else
-            {
-                PrevA();
-            }
-            NextA();
+            PrevImg();
         }
         #endregion
         
 
         //
-        //スライドショーの再生
-        private void StartSS()
+        //スライドショーの再生(Mouseイベント(Main)で呼び出す)
+        private void SlideShowStart()
         {
-            StopA();  //再生中は停止ボタンを表示
+            StopButtonActivate();  //再生中は停止ボタンを表示
             Timer_ChangeImg.Start();
         }
         //
         //スライドショーの停止
-        private void StopSS()
+        private void SlideShowStop()
         {
-            StartA();  //停止中は再生ボタンを表示
+            StartButtonActivate();  //停止中は再生ボタンを表示
             Timer_ChangeImg.Stop();
         }
         //
         //ランダムON
         private void RandomON()
         {
-            RandomA();
-            List<Photo> tempphotos;
-            tempphotos = photos;
-            tempphotos.Remove(photos[photoIndex]);
-            randomphotos = application.SortSlideList(tempphotos);
-            photos = randomphotos;
+            RandomButtonActivate();
+            if (originalphotos.Count() != 1)  //写真が2枚以上の場合
+            {
+                List<Photo> handoverphotos = new List<Photo>(photos);
+                handoverphotos.Remove(photos[photoIndex]);
+                randomphotos = application.SortSlideList(handoverphotos);
+                randomphotos.Insert(0, photos[photoIndex]);
+                photos = randomphotos;
+            }            
             photoIndex = 0;
+            ChangeArrowButtonState();
+            PictureBox1.ImageLocation = photos.ElementAt(photoIndex).File.FilePath;
         }
         //
         //ランダムOFF
         private void RandomOFF()
         {
-            RandomNA();
-            photoIndex = originalphotos.IndexOf(randomphotos[photoIndex]);
+            RandomButtonInactivate();
+            photoIndex = originalphotos.IndexOf(photos[photoIndex]);
             photos = originalphotos;
+            ChangeArrowButtonState();
+            PictureBox1.ImageLocation = photos.ElementAt(photoIndex).File.FilePath;
+        }
+        //
+        //Next
+        private void NextImg()
+        {
+            if (photoIndex < photos.Count()-1)
+            {
+                photoIndex++;
+            }
+            else
+            {
+                photoIndex = 0;
+            }            
+            ChangeArrowButtonState();
+            PictureBox1.ImageLocation = photos.ElementAt(photoIndex).File.FilePath;
+        }
+        //
+        //Prev
+        private void PrevImg()
+        {
+            if (photoIndex == 0)
+            {
+                photoIndex = photos.Count()-1;
+            }
+            else
+            {
+                photoIndex--;
+            }            
+            ChangeArrowButtonState();
+            PictureBox1.ImageLocation = photos.ElementAt(photoIndex).File.FilePath;
         }
         
         //
-        //画像の表示・リピートON/OFFの場合の切り替え
+        //一定時間経過で画像の切り替え
         private void Timer_ChangeImg_Tick(object sender, EventArgs e)
         {
             photoIndex++;
@@ -213,95 +232,132 @@ namespace PhotoFrameApp
                     PictureBox1.ImageLocation = photos.ElementAt(photoIndex).File.FilePath;
                 }
                 else
-                {
-                    StopSS();
+                {                    
+                    SlideShowStop();
+                    MessageBox.Show("スライドショーが終了しました。", "終了", MessageBoxButtons.OK);
                 }
             }
             else
             {
                 PictureBox1.ImageLocation = photos.ElementAt(photoIndex).File.FilePath;
             }
+            ChangeArrowButtonState();
         }
-        
+        //
+        //矢印の状態の分岐
+        private void ChangeArrowButtonState()
+        {
+            if (repeat == true)
+            {
+                PreviousButtonActivate();
+                NextButtonActivate();
+            }
+            else
+            {
+                if (photos.Count() == 1)
+                {
+                    PreviousButtonInactivate();
+                    NextButtonInactivate();
+                }
+                else
+                {
+                    if (photoIndex == 0)
+                    {
+                        PreviousButtonInactivate();
+                        NextButtonActivate();
+                    }
+                    else if (photoIndex >= photos.Count() - 1)
+                    {
+                        PreviousButtonActivate();
+                        NextButtonInactivate();
+                    }
+                    else
+                    {
+                        PreviousButtonActivate();
+                        NextButtonActivate();
+                    }
+                }
+            }
+        }
+
         //
         //ボタン画像呼び出し、状態変更
         #region
+        //
+        //デフォルトで表示するボタンの設定
         private void DefaultButton()
         {
-            PrevNA();
-            NextA();
-            StartA();
-            RandomNA();
-            RepeatNA();
+            ChangeArrowButtonState();
+            StartButtonActivate();
+            RandomButtonInactivate();
+            RepeatButtonInactivate();
         }
-        private void PrevA()  //Active
+        private void PreviousButtonActivate()  //Active
         {
             PrevBox.Image = Image.FromFile(@"..\..\img\0 PrevA.png");
             PrevBox.Enabled = true;
         }
-        private void PrevNA()  //NonActive
+        private void PreviousButtonInactivate()  //NonActive
         {
             PrevBox.Image = Image.FromFile(@"..\..\img\0 PrevNA.png");
             PrevBox.Enabled = false;
         }
-        private void NextA()  //Active
+        private void NextButtonActivate()  //Active
         {
             NextBox.Image = Image.FromFile(@"..\..\img\0 NextA.png");
             NextBox.Enabled = true;
         }
-        private void NextNA()  //NonActive
+        private void NextButtonInactivate()  //NonActive
         {
             NextBox.Image = Image.FromFile(@"..\..\img\0 NextNA.png");
             NextBox.Enabled = false;
         }
-        private void StartA()  //Active
+        private void StartButtonActivate()  //Active
         {
             StartStopBox.Image = Image.FromFile(@"..\..\img\StartA.png");
             startstop = false;
         }
-        private void StartMD()  //MouseDown
+        private void MouseDownStartButton()  //MouseDown
         {
-            StartStopBox.Image = Image.FromFile(@"..\..\img\StartMD.png");
+            StartStopBox.Image = Image.FromFile(@"..\..\img\StartMDA.png");
         }
-        private void StopA()  //Active
+        private void StopButtonActivate()  //Active
         {
             StartStopBox.Image = Image.FromFile(@"..\..\img\StopA.png");
             startstop = true;
         }
-        private void StopMD()  //MouseDown
+        private void MouseDownStopButton()  //MouseDown
         {
-            StartStopBox.Image = Image.FromFile(@"..\..\img\StopMD.png");
+            StartStopBox.Image = Image.FromFile(@"..\..\img\StopMDA.png");
         }
-        private void RandomA()  //Active
+        private void RandomButtonActivate()  //Active
         {
             RandomBox.Image = Image.FromFile(@"..\..\img\RandomA.png");
             random = true;
         }
-        private void RandomNA()  //NonActive
+        private void RandomButtonInactivate()  //NonActive
         {
             RandomBox.Image = Image.FromFile(@"..\..\img\RandomNA.png");
             random = false;
-        }       
-        private void RandomMD()  //MouseDown
-        {
-            RandomBox.Image = Image.FromFile(@"..\..\img\RandomMD.png");
         }
-        private void RepeatA()  //Active
+        private void MouseDownRandomButton()  //MouseDown
+        {
+            RandomBox.Image = Image.FromFile(@"..\..\img\RandomMDA.png");
+        }
+        private void RepeatButtonActivate()  //Active
         {
             RepeatBox.Image = Image.FromFile(@"..\..\img\RepeatA.png");
             repeat = true;
         }
-
-        private void RepeatNA()  //NonActive
+        private void RepeatButtonInactivate()  //NonActive
         {
             RepeatBox.Image = Image.FromFile(@"..\..\img\RepeatNA.png");
             repeat = false;
         }
-        private void RepeatMD()  //MouseDown
+        private void MouseDownRepeatButton()  //MouseDown
         {
-            RepeatBox.Image = Image.FromFile(@"..\..\img\RepeatMD.png");
+            RepeatBox.Image = Image.FromFile(@"..\..\img\RepeatMDA.png");
         }
         #endregion
     }
-
 }
