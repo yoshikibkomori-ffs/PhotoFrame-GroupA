@@ -28,41 +28,41 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.TextBox1 = new System.Windows.Forms.TextBox();
+            this.Directory_TextBox = new System.Windows.Forms.TextBox();
             this.SelectDir = new System.Windows.Forms.Button();
             this.FolderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.Display = new System.Windows.Forms.Button();
-            this.DateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.Start_DateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.Label1 = new System.Windows.Forms.Label();
-            this.DateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.End_DateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.SelectDate = new System.Windows.Forms.Button();
-            this.KeywordBox1 = new System.Windows.Forms.ComboBox();
+            this.Select_KeywordComboBox = new System.Windows.Forms.ComboBox();
             this.SelectKeyword = new System.Windows.Forms.Button();
             this.SelectFavorite = new System.Windows.Forms.Button();
-            this.ListView1 = new System.Windows.Forms.ListView();
+            this.PhotoListView = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.PictureBox1 = new System.Windows.Forms.PictureBox();
-            this.KeywordBox2 = new System.Windows.Forms.ComboBox();
+            this.Preview_PictureBox = new System.Windows.Forms.PictureBox();
+            this.Add_KeywordComboBox = new System.Windows.Forms.ComboBox();
             this.AddKeyword = new System.Windows.Forms.Button();
             this.ToggleFavorite = new System.Windows.Forms.Button();
             this.SlideShow = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Preview_PictureBox)).BeginInit();
             this.SuspendLayout();
             // 
-            // TextBox1
+            // Directory_TextBox
             // 
-            this.TextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.Directory_TextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TextBox1.BackColor = System.Drawing.Color.White;
-            this.TextBox1.Font = new System.Drawing.Font("HG明朝B", 14F);
-            this.TextBox1.Location = new System.Drawing.Point(20, 30);
-            this.TextBox1.Name = "TextBox1";
-            this.TextBox1.ReadOnly = true;
-            this.TextBox1.Size = new System.Drawing.Size(420, 26);
-            this.TextBox1.TabIndex = 0;
+            this.Directory_TextBox.BackColor = System.Drawing.Color.White;
+            this.Directory_TextBox.Font = new System.Drawing.Font("HG明朝B", 14F);
+            this.Directory_TextBox.Location = new System.Drawing.Point(20, 30);
+            this.Directory_TextBox.Name = "Directory_TextBox";
+            this.Directory_TextBox.ReadOnly = true;
+            this.Directory_TextBox.Size = new System.Drawing.Size(420, 26);
+            this.Directory_TextBox.TabIndex = 0;
             // 
             // SelectDir
             // 
@@ -73,7 +73,7 @@
             this.SelectDir.TabIndex = 1;
             this.SelectDir.Text = "Select Dir";
             this.SelectDir.UseVisualStyleBackColor = true;
-            this.SelectDir.Click += new System.EventHandler(this.Click_SeachDir);
+            this.SelectDir.Click += new System.EventHandler(this.Click_SelectDir);
             // 
             // Display
             // 
@@ -86,18 +86,19 @@
             this.Display.UseVisualStyleBackColor = true;
             this.Display.Click += new System.EventHandler(this.Click_Display);
             // 
-            // DateTimePicker1
+            // Start_DateTimePicker
             // 
-            this.DateTimePicker1.CalendarFont = new System.Drawing.Font("HG明朝B", 14F);
-            this.DateTimePicker1.Font = new System.Drawing.Font("HG明朝B", 14F);
-            this.DateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DateTimePicker1.Location = new System.Drawing.Point(20, 75);
-            this.DateTimePicker1.MaxDate = new System.DateTime(2018, 7, 11, 19, 46, 4, 0);
-            this.DateTimePicker1.Name = "DateTimePicker1";
-            this.DateTimePicker1.Size = new System.Drawing.Size(240, 26);
-            this.DateTimePicker1.TabIndex = 3;
-            this.DateTimePicker1.Value = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
-            this.DateTimePicker1.ValueChanged += new System.EventHandler(this.Click_StartDateTimePicker);
+            this.Start_DateTimePicker.CalendarFont = new System.Drawing.Font("HG明朝B", 14F);
+            this.Start_DateTimePicker.CustomFormat = "\"yyyy年mm月\"";
+            this.Start_DateTimePicker.Font = new System.Drawing.Font("HG明朝B", 14F);
+            this.Start_DateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.Start_DateTimePicker.Location = new System.Drawing.Point(20, 75);
+            this.Start_DateTimePicker.MaxDate = new System.DateTime(2018, 7, 11, 19, 46, 4, 0);
+            this.Start_DateTimePicker.Name = "Start_DateTimePicker";
+            this.Start_DateTimePicker.Size = new System.Drawing.Size(240, 26);
+            this.Start_DateTimePicker.TabIndex = 3;
+            this.Start_DateTimePicker.Value = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.Start_DateTimePicker.ValueChanged += new System.EventHandler(this.Click_StartCalenderDialog);
             // 
             // Label1
             // 
@@ -109,17 +110,17 @@
             this.Label1.TabIndex = 4;
             this.Label1.Text = "～";
             // 
-            // DateTimePicker2
+            // End_DateTimePicker
             // 
-            this.DateTimePicker2.Font = new System.Drawing.Font("HG明朝B", 14F);
-            this.DateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DateTimePicker2.Location = new System.Drawing.Point(295, 75);
-            this.DateTimePicker2.MaxDate = new System.DateTime(2002, 7, 12, 0, 0, 0, 0);
-            this.DateTimePicker2.Name = "DateTimePicker2";
-            this.DateTimePicker2.Size = new System.Drawing.Size(240, 26);
-            this.DateTimePicker2.TabIndex = 5;
-            this.DateTimePicker2.Value = new System.DateTime(2002, 7, 12, 0, 0, 0, 0);
-            this.DateTimePicker2.ValueChanged += new System.EventHandler(this.Click_EndDateTimePicker);
+            this.End_DateTimePicker.Font = new System.Drawing.Font("HG明朝B", 14F);
+            this.End_DateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.End_DateTimePicker.Location = new System.Drawing.Point(295, 75);
+            this.End_DateTimePicker.MaxDate = new System.DateTime(2018, 7, 17, 0, 0, 0, 0);
+            this.End_DateTimePicker.Name = "End_DateTimePicker";
+            this.End_DateTimePicker.Size = new System.Drawing.Size(240, 26);
+            this.End_DateTimePicker.TabIndex = 5;
+            this.End_DateTimePicker.Value = new System.DateTime(2018, 7, 17, 0, 0, 0, 0);
+            this.End_DateTimePicker.ValueChanged += new System.EventHandler(this.Click_EndCalenderDialog);
             // 
             // SelectDate
             // 
@@ -132,18 +133,18 @@
             this.SelectDate.UseVisualStyleBackColor = true;
             this.SelectDate.Click += new System.EventHandler(this.Click_SelectDate);
             // 
-            // KeywordBox1
+            // Select_KeywordComboBox
             // 
-            this.KeywordBox1.BackColor = System.Drawing.Color.White;
-            this.KeywordBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.KeywordBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.KeywordBox1.Font = new System.Drawing.Font("HG明朝B", 14F);
-            this.KeywordBox1.FormattingEnabled = true;
-            this.KeywordBox1.Location = new System.Drawing.Point(20, 120);
-            this.KeywordBox1.Name = "KeywordBox1";
-            this.KeywordBox1.Size = new System.Drawing.Size(240, 27);
-            this.KeywordBox1.TabIndex = 7;
-            this.KeywordBox1.SelectedIndexChanged += new System.EventHandler(this.KeywordBox1_SelectedIndexChanged);
+            this.Select_KeywordComboBox.BackColor = System.Drawing.Color.White;
+            this.Select_KeywordComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.Select_KeywordComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Select_KeywordComboBox.Font = new System.Drawing.Font("HG明朝B", 14F);
+            this.Select_KeywordComboBox.FormattingEnabled = true;
+            this.Select_KeywordComboBox.Location = new System.Drawing.Point(20, 120);
+            this.Select_KeywordComboBox.Name = "Select_KeywordComboBox";
+            this.Select_KeywordComboBox.Size = new System.Drawing.Size(240, 27);
+            this.Select_KeywordComboBox.TabIndex = 7;
+            this.Select_KeywordComboBox.SelectedIndexChanged += new System.EventHandler(this.Select_KeywordComboBox_SelectedIndexChanged);
             // 
             // SelectKeyword
             // 
@@ -167,25 +168,25 @@
             this.SelectFavorite.UseVisualStyleBackColor = true;
             this.SelectFavorite.Click += new System.EventHandler(this.Click_SelectFavorite);
             // 
-            // ListView1
+            // PhotoListView
             // 
-            this.ListView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.PhotoListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3,
             this.columnHeader4});
-            this.ListView1.Font = new System.Drawing.Font("Century", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.ListView1.FullRowSelect = true;
-            this.ListView1.LabelWrap = false;
-            this.ListView1.Location = new System.Drawing.Point(20, 165);
-            this.ListView1.Name = "ListView1";
-            this.ListView1.OwnerDraw = true;
-            this.ListView1.Size = new System.Drawing.Size(333, 280);
-            this.ListView1.TabIndex = 10;
-            this.ListView1.UseCompatibleStateImageBehavior = false;
-            this.ListView1.View = System.Windows.Forms.View.Details;
-            this.ListView1.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.Click_DateSort);
-            this.ListView1.SelectedIndexChanged += new System.EventHandler(this.Click_ShowPreview);
+            this.PhotoListView.Font = new System.Drawing.Font("Century", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.PhotoListView.FullRowSelect = true;
+            this.PhotoListView.LabelWrap = false;
+            this.PhotoListView.Location = new System.Drawing.Point(20, 165);
+            this.PhotoListView.Name = "PhotoListView";
+            this.PhotoListView.OwnerDraw = true;
+            this.PhotoListView.Size = new System.Drawing.Size(333, 280);
+            this.PhotoListView.TabIndex = 10;
+            this.PhotoListView.UseCompatibleStateImageBehavior = false;
+            this.PhotoListView.View = System.Windows.Forms.View.Details;
+            this.PhotoListView.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.Click_DateSort);
+            this.PhotoListView.SelectedIndexChanged += new System.EventHandler(this.Click_ShowPreview);
             // 
             // columnHeader1
             // 
@@ -208,25 +209,25 @@
             this.columnHeader4.Text = "Date";
             this.columnHeader4.Width = 80;
             // 
-            // PictureBox1
+            // Preview_PictureBox
             // 
-            this.PictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
-            this.PictureBox1.Location = new System.Drawing.Point(360, 165);
-            this.PictureBox1.Name = "PictureBox1";
-            this.PictureBox1.Size = new System.Drawing.Size(280, 280);
-            this.PictureBox1.TabIndex = 14;
-            this.PictureBox1.TabStop = false;
+            this.Preview_PictureBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
+            this.Preview_PictureBox.Location = new System.Drawing.Point(360, 165);
+            this.Preview_PictureBox.Name = "Preview_PictureBox";
+            this.Preview_PictureBox.Size = new System.Drawing.Size(280, 280);
+            this.Preview_PictureBox.TabIndex = 14;
+            this.Preview_PictureBox.TabStop = false;
             // 
-            // KeywordBox2
+            // Add_KeywordComboBox
             // 
-            this.KeywordBox2.DropDownWidth = 265;
-            this.KeywordBox2.Font = new System.Drawing.Font("HG明朝B", 14F);
-            this.KeywordBox2.FormattingEnabled = true;
-            this.KeywordBox2.Location = new System.Drawing.Point(20, 460);
-            this.KeywordBox2.Name = "KeywordBox2";
-            this.KeywordBox2.Size = new System.Drawing.Size(240, 27);
-            this.KeywordBox2.TabIndex = 11;
-            this.KeywordBox2.SelectedIndexChanged += new System.EventHandler(this.KeywordBox2_SelectedIndexChanged);
+            this.Add_KeywordComboBox.DropDownWidth = 265;
+            this.Add_KeywordComboBox.Font = new System.Drawing.Font("HG明朝B", 14F);
+            this.Add_KeywordComboBox.FormattingEnabled = true;
+            this.Add_KeywordComboBox.Location = new System.Drawing.Point(20, 460);
+            this.Add_KeywordComboBox.Name = "Add_KeywordComboBox";
+            this.Add_KeywordComboBox.Size = new System.Drawing.Size(240, 27);
+            this.Add_KeywordComboBox.TabIndex = 11;
+            this.Add_KeywordComboBox.SelectedIndexChanged += new System.EventHandler(this.Add_KeywordComboBox_SelectedIndexChanged);
             // 
             // AddKeyword
             // 
@@ -269,22 +270,22 @@
             this.Controls.Add(this.SlideShow);
             this.Controls.Add(this.ToggleFavorite);
             this.Controls.Add(this.AddKeyword);
-            this.Controls.Add(this.KeywordBox2);
-            this.Controls.Add(this.PictureBox1);
-            this.Controls.Add(this.ListView1);
+            this.Controls.Add(this.Add_KeywordComboBox);
+            this.Controls.Add(this.Preview_PictureBox);
+            this.Controls.Add(this.PhotoListView);
             this.Controls.Add(this.SelectFavorite);
             this.Controls.Add(this.SelectKeyword);
-            this.Controls.Add(this.KeywordBox1);
+            this.Controls.Add(this.Select_KeywordComboBox);
             this.Controls.Add(this.SelectDate);
-            this.Controls.Add(this.DateTimePicker2);
+            this.Controls.Add(this.End_DateTimePicker);
             this.Controls.Add(this.Label1);
-            this.Controls.Add(this.DateTimePicker1);
+            this.Controls.Add(this.Start_DateTimePicker);
             this.Controls.Add(this.Display);
             this.Controls.Add(this.SelectDir);
-            this.Controls.Add(this.TextBox1);
+            this.Controls.Add(this.Directory_TextBox);
             this.Name = "Form1";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Preview_PictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -292,24 +293,24 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox TextBox1;
+        private System.Windows.Forms.TextBox Directory_TextBox;
         private System.Windows.Forms.Button SelectDir;
         private System.Windows.Forms.FolderBrowserDialog FolderBrowserDialog1;
         private System.Windows.Forms.Button Display;
-        private System.Windows.Forms.DateTimePicker DateTimePicker1;
+        private System.Windows.Forms.DateTimePicker Start_DateTimePicker;
         private System.Windows.Forms.Label Label1;
-        private System.Windows.Forms.DateTimePicker DateTimePicker2;
+        private System.Windows.Forms.DateTimePicker End_DateTimePicker;
         private System.Windows.Forms.Button SelectDate;
-        private System.Windows.Forms.ComboBox KeywordBox1;
+        private System.Windows.Forms.ComboBox Select_KeywordComboBox;
         private System.Windows.Forms.Button SelectKeyword;
         private System.Windows.Forms.Button SelectFavorite;
-        private System.Windows.Forms.ListView ListView1;
+        private System.Windows.Forms.ListView PhotoListView;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.PictureBox PictureBox1;
-        private System.Windows.Forms.ComboBox KeywordBox2;
+        private System.Windows.Forms.PictureBox Preview_PictureBox;
+        private System.Windows.Forms.ComboBox Add_KeywordComboBox;
         private System.Windows.Forms.Button AddKeyword;
         private System.Windows.Forms.Button ToggleFavorite;
         private System.Windows.Forms.Button SlideShow;

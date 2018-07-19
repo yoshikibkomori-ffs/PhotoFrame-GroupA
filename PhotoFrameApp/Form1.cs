@@ -49,19 +49,19 @@ namespace PhotoFrameApp
             searchFavorite = new SearchFavorite();
             searchKeyword = new SearchKeyword();
             sortDate = new SortDate();
-
+            End_DateTimePicker.MaxDate = DateTime.Today;
         }
         /// <summary>
         /// ディレクトリパスを入手
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Click_SeachDir(object sender, EventArgs e)
+        private void Click_SelectDir(object sender, EventArgs e)
         {
-             DialogResult dr = FolderBrowserDialog1.ShowDialog();
-             if (dr == System.Windows.Forms.DialogResult.OK)
+             DialogResult dialogResult = FolderBrowserDialog1.ShowDialog();
+             if (dialogResult == System.Windows.Forms.DialogResult.OK)
              {
-                 TextBox1.Text = FolderBrowserDialog1.SelectedPath;
+                 Directory_TextBox.Text = FolderBrowserDialog1.SelectedPath;
              }
         }
 
@@ -72,10 +72,18 @@ namespace PhotoFrameApp
         /// <param name="e"></param>
         private void Click_Display(object sender, EventArgs e)
         {
-            string dirpath = TextBox1.Text;
-            ListView1.Items.Clear();
-            this.photos = createPhotoList.Execute(dirpath);
-            Set_PhotoList();
+            try
+            {
+                string dirpath = Directory_TextBox.Text;
+                PhotoListView.Items.Clear();
+                this.photos = createPhotoList.Execute(dirpath);
+                Set_PhotoList();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message,"エラー");
+                Directory_TextBox.Clear();
+            }
         } 
 
         /// <summary>
@@ -83,7 +91,7 @@ namespace PhotoFrameApp
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Click_StartDateTimePicker(object sender, EventArgs e)
+        private void Click_StartCalenderDialog(object sender, EventArgs e)
         {
 
         }
@@ -93,10 +101,11 @@ namespace PhotoFrameApp
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Click_EndDateTimePicker(object sender, EventArgs e)
+        private void Click_EndCalenderDialog(object sender, EventArgs e)
         {
 
         }
+
         /// <summary>
         /// 設定した日時の範囲の画像一覧をリストに表示する
         /// </summary>
@@ -104,15 +113,35 @@ namespace PhotoFrameApp
         /// <param name="e"></param>
         private void Click_SelectDate(object sender, EventArgs e)
         {
+            DateTime s_Date = Start_DateTimePicker.Value;
+            DateTime e_Date = End_DateTimePicker.Value;
+            try
+            {
+                this.photos = searchDate.Execute(this.photos, s_Date, e_Date);
+                Set_PhotoList();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message+"日付を入力しなおしてください", "エラー");
+                Start_DateTimePicker.ResetText();
+                End_DateTimePicker.ResetText();
+                s_Date = Start_DateTimePicker.Value;
+                e_Date = End_DateTimePicker.Value;
+            }
 
-            DateTime s_Date = DateTimePicker1.Value;
-            DateTime e_Date = DateTimePicker2.Value;
-            
-             this.photos = searchDate.Execute(this.photos, s_Date, e_Date);
-             Set_PhotoList();
+            //if (s_Date <= e_Date)
+            //{
+            //    this.photos = searchDate.Execute(this.photos, s_Date, e_Date);
+            //    Set_PhotoList();
+            //}
+            //else
+            //{
+            //    MessageBox.Show("不正な範囲の期間が設定されました。\n再入力してください。", "エラー");
+            //    //throw new ArgumentException("不正な範囲の期間が設定されました。\n再入力してください。");
+            //}
         }
 
-        private void KeywordBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void Select_KeywordComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
@@ -124,10 +153,16 @@ namespace PhotoFrameApp
         /// <param name="e"></param>
         private void Click_SelectKeyword(object sender, EventArgs e)
         {
-            string keytext = KeywordBox1.SelectedText;
-           
-            this.photos = searchKeyword.Execute(this.photos, keytext);
-            Set_PhotoList();
+            try
+            {
+                string keytext = Select_KeywordComboBox.Text;
+                this.photos = searchKeyword.Execute(this.photos, keytext);
+                Set_PhotoList();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "エラー");
+            }
             
         }
 
@@ -138,13 +173,19 @@ namespace PhotoFrameApp
         /// <param name="e"></param>
         private void Click_SelectFavorite(object sender, EventArgs e)
         {
-            
-            this.photos = searchFavorite.Execute(this.photos);
-            Set_PhotoList();
+            try
+            {
+                this.photos = searchFavorite.Execute(this.photos);
+                Set_PhotoList();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "エラー");
+            }
         }
 
 
-        private void KeywordBox2_SelectedIndexChanged(object sender, EventArgs e)
+        private void Add_KeywordComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
@@ -157,11 +198,36 @@ namespace PhotoFrameApp
         private void Click_AddKeyword(object sender, EventArgs e)
         {
             //ListView1.Enabled = false;
-            for (int i = 0; i < ListView1.SelectedItems.Count; i++)
+            string keytext = Add_KeywordComboBox.Text;
+            //if(ListView1.SelectedItems.Count == 0)
+            //{
+            //    MessageBox.Show("リストの写真を選択してください", "エラー");
+            //}
+            try
             {
-                 int index = ListView1.SelectedItems[i].Index;
-                 Photo photo = this.photos.ElementAt(index);
-                 Update_PhotoList(index, photo);
+                for (int i = 0; i < PhotoListView.SelectedItems.Count; i++)
+                {
+
+                    int index = PhotoListView.SelectedItems[i].Index;
+                    Photo photo = this.photos.ElementAt(index);
+                    bool result = addKeyword.Execute(keytext);
+                    if (result)
+                    {
+                        photo = changeKeyword.Execute(photo, keytext);
+                        Update_PhotoList(index, photo);
+                    }
+                    else
+                    {
+                        //追加をしない
+                    }
+
+                    //photo = changeKeyword.Execute(photo, keytext); 
+                    //Update_PhotoList(index, photo);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "エラー");
             }
             //ListView.Enabled = true;
         }
@@ -173,14 +239,22 @@ namespace PhotoFrameApp
         /// <param name="e"></param>
         private void Click_AddFavorite(object sender, EventArgs e)
         {
-            //ListView1.Enabled = false;
-            for (int i = 0; i < ListView1.SelectedItems.Count; i++)
+            try
             {
-                int index = ListView1.SelectedItems[i].Index;
-                Photo photo = this.photos.ElementAt(index);
-                Update_PhotoList(index, photo);
+                //ListView1.Enabled = false;
+                for (int i = 0; i < PhotoListView.SelectedItems.Count; i++)
+                {
+                    int index = PhotoListView.SelectedItems[i].Index;
+                    Photo photo = this.photos.ElementAt(index);
+                    photo = changeFavorite.Execute(photo);
+                    Update_PhotoList(index, photo);
+                }
+                //ListView.Enabled = true;
             }
-            //ListView.Enabled = true;
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "エラー");
+            }
         }
 
         /// <summary>
@@ -190,9 +264,17 @@ namespace PhotoFrameApp
         /// <param name="e"></param>
         private void Click_SlideShow(object sender, EventArgs e)
         {
-            //SlideShow slideShowForm = new SlideShow(this.photos);
-            SlideShow slideShowForm = new SlideShow();
-            slideShowForm.ShowDialog();
+            
+            if (this.photos.Count != 0)
+            {
+                //SlideShow slideShowForm = new SlideShow(this.photos,keywordRepository,photoRepository,photoFileService);
+                SlideShow slideShowForm = new SlideShow();
+                slideShowForm.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("スライドショーに表示する写真が存在しません","エラー");
+            }
 
         }
 
@@ -203,11 +285,18 @@ namespace PhotoFrameApp
         /// <param name="e"></param>
         private void Click_DateSort(object sender, ColumnClickEventArgs e)
         {
-            if(e.Column == 3)
+            try
             {
-                order = !order;
-                this.photos = sortDate.Execute(this.photos, order);
-                Set_PhotoList();
+                if (e.Column == 3)
+                {
+                    order = !order;
+                    this.photos = sortDate.Execute(this.photos, order);
+                    Set_PhotoList();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "エラー");
             }
         }
 
@@ -218,10 +307,10 @@ namespace PhotoFrameApp
         /// <param name="e"></param>
         private void Click_ShowPreview(object sender, EventArgs e)
         {
-            if(ListView1.SelectedItems.Count == 1)
+            if(PhotoListView.SelectedItems.Count == 1)
             {
-                int index = ListView1.SelectedItems[0].Index;
-                PictureBox1.ImageLocation = this.photos.ElementAt(index).File.FilePath;
+                int index = PhotoListView.SelectedItems[0].Index;
+                Preview_PictureBox.ImageLocation = this.photos.ElementAt(index).File.FilePath;
             }
         }
 
@@ -230,7 +319,8 @@ namespace PhotoFrameApp
         /// </summary>
         private void Set_PhotoList()
         {
-            if (photos != null)
+            DateTime Min_DateTime = new DateTime(1753, 1, 1, 0, 0, 0);
+            if (this.photos != null)
             {
                 foreach (var photo in photos)
                 {
@@ -254,7 +344,7 @@ namespace PhotoFrameApp
                         isFavorite = "";
                     }
 
-                    if (photo.File.DateTime != null)
+                    if (photo.File.DateTime !=Min_DateTime)
                     {
                         PhotoDateTime = photo.File.DateTime.ToString();
                     }
@@ -264,13 +354,13 @@ namespace PhotoFrameApp
                     }
 
                     string[] item = { Path.GetFileName(photo.File.FilePath), Keyword, isFavorite, PhotoDateTime };
-                    ListView1.Items.Add(new ListViewItem(item));
+                    PhotoListView.Items.Add(new ListViewItem(item));
                 }
-
 
             }
 
         }
+
         /// <summary>
         /// 1行分のリストを更新する
         /// </summary>
@@ -278,6 +368,7 @@ namespace PhotoFrameApp
         /// <param name="photo"></param>
         private void Update_PhotoList(int index, Photo photo)
         {
+            DateTime Min_DateTime = new DateTime(1753,1,1,0,0,0);
             string Keyword, isFavorite, PhotoDateTime;
 
             if (photo.Keyword.KeyText != null)
@@ -298,7 +389,7 @@ namespace PhotoFrameApp
                 isFavorite = "";
             }
 
-            if (photo.File.DateTime != null)
+            if (photo.File.DateTime != Min_DateTime)
             {
                 PhotoDateTime = photo.File.DateTime.ToString();
             }
@@ -306,10 +397,10 @@ namespace PhotoFrameApp
             {
                 PhotoDateTime = "";
             }
-            ListView1.Items[index].SubItems[0].Text = Path.GetFileName(photo.File.FilePath);
-            ListView1.Items[index].SubItems[1].Text = photo.Keyword.KeyText;
-            ListView1.Items[index].SubItems[2].Text = isFavorite;
-            ListView1.Items[index].SubItems[3].Text = PhotoDateTime;
+            PhotoListView.Items[index].SubItems[0].Text = Path.GetFileName(photo.File.FilePath);
+            PhotoListView.Items[index].SubItems[1].Text = photo.Keyword.KeyText;
+            PhotoListView.Items[index].SubItems[2].Text = isFavorite;
+            PhotoListView.Items[index].SubItems[3].Text = PhotoDateTime;
         }
 
     }
