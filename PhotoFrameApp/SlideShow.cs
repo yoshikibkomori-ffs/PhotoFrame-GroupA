@@ -234,6 +234,7 @@ namespace PhotoFrameApp
                 else
                 {                    
                     SlideShowStop();
+                    photoIndex--;
                     MessageBox.Show("スライドショーが終了しました。", "終了", MessageBoxButtons.OK);
                 }
             }
