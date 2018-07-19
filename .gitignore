@@ -261,3 +261,6 @@ __pycache__/
 *.pyc
 /PhotoFrame.Persistence/Repositories/Csv/KeywordRepository.cs
 /PhotoFrame.Domain.UseCaseTests
+/PhotoFrameAppTests/PhotoFrameAppTests.csproj
+/PhotoFrameAppTests1
+/PhotoFrameAppTests
